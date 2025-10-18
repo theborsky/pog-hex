@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
 import pogLogo from "@/assets/pog-logo.webp";
 import { HexGrid as HexGridType, HexTile, Position, Troop } from "@/types/hex";
 import { HexGrid } from "@/components/HexGrid";
@@ -11,6 +12,7 @@ import { Legend } from "@/components/Legend";
 import { MapSelector } from "@/components/MapSelector";
 import { PREDEFINED_MAPS } from "@/data/maps";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -25,6 +27,9 @@ const Index = () => {
   const [viewMode, setViewMode] = useState<"tiles" | "troops">("tiles");
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [exportFilename, setExportFilename] = useState("hex-grid");
+  const [loadSaveOpen, setLoadSaveOpen] = useState(false);
+  const [editGridOpen, setEditGridOpen] = useState(false);
+  const [editTilesOpen, setEditTilesOpen] = useState(false);
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
@@ -357,83 +362,98 @@ const Index = () => {
         </div>
         <div className="p-4 space-y-4">
           {/* Load and Save Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
-              Load and Save
-            </h2>
-            <MapSelector onLoadMap={handleLoadPredefinedMap} />
-            <GridControls
-              onImport={handleImport}
-              onExport={handleExport}
-              onAddColumn={handleAddColumn}
-              onRemoveColumn={handleRemoveColumn}
-              onAddRow={handleAddRow}
-              onRemoveRow={handleRemoveRow}
-              showImportExportOnly
-            />
-          </div>
+          <Collapsible open={loadSaveOpen} onOpenChange={setLoadSaveOpen}>
+            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
+              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
+                Load and Save
+              </h2>
+              <ChevronDown className={`h-4 w-4 transition-transform ${loadSaveOpen ? "" : "-rotate-90"}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-3">
+              <MapSelector onLoadMap={handleLoadPredefinedMap} />
+              <GridControls
+                onImport={handleImport}
+                onExport={handleExport}
+                onAddColumn={handleAddColumn}
+                onRemoveColumn={handleRemoveColumn}
+                onAddRow={handleAddRow}
+                onRemoveRow={handleRemoveRow}
+                showImportExportOnly
+              />
+            </CollapsibleContent>
+          </Collapsible>
 
           {/* Edit Grid Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
-              Edit Grid
-            </h2>
-            <GridControls
-              onImport={handleImport}
-              onExport={handleExport}
-              onAddColumn={handleAddColumn}
-              onRemoveColumn={handleRemoveColumn}
-              onAddRow={handleAddRow}
-              onRemoveRow={handleRemoveRow}
-              showGridControlsOnly
-            />
-          </div>
+          <Collapsible open={editGridOpen} onOpenChange={setEditGridOpen}>
+            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
+              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
+                Edit Grid
+              </h2>
+              <ChevronDown className={`h-4 w-4 transition-transform ${editGridOpen ? "" : "-rotate-90"}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-3">
+              <GridControls
+                onImport={handleImport}
+                onExport={handleExport}
+                onAddColumn={handleAddColumn}
+                onRemoveColumn={handleRemoveColumn}
+                onAddRow={handleAddRow}
+                onRemoveRow={handleRemoveRow}
+                showGridControlsOnly
+              />
+            </CollapsibleContent>
+          </Collapsible>
 
           {/* Edit Tiles Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
-              Edit Tiles
-            </h2>
-            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="tiles">Tiles</TabsTrigger>
-                <TabsTrigger value="troops">Troops</TabsTrigger>
-              </TabsList>
-              <TabsContent value="tiles" className="space-y-4 mt-4">
-                <TilePropertiesPanel 
-                  tile={selectedTileData} 
-                  onUpdateTile={handleUpdateTile} 
-                  onRemoveTile={handleRemoveTile}
-                  onAddTileAbove={handleAddTileAbove}
-                  onAddTileBelow={handleAddTileBelow}
-                />
-                <Legend />
-              </TabsContent>
-              <TabsContent value="troops" className="space-y-4 mt-4">
-                <TroopControls onAddTroop={handleAddTroop} />
-                <TroopList
-                  troops={troops}
-                  selectedTroopId={selectedTroopId}
-                  onSelectTroop={setSelectedTroopId}
-                  onRemoveTroop={(troopId) => {
-                    setTroops(troops.filter((t) => t.EntityId !== troopId));
-                    const troop = troops.find(t => t.EntityId === troopId);
-                    if (troop) {
-                      toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-                    }
-                    if (selectedTroopId === troopId) {
-                      setSelectedTroopId(null);
-                    }
-                  }}
-                />
-                <TroopPropertiesPanel 
-                  troop={selectedTroopData}
-                  onUpdateTroop={handleUpdateTroop}
-                  onRemoveTroop={handleRemoveTroop}
-                />
-              </TabsContent>
-            </Tabs>
-          </div>
+          <Collapsible open={editTilesOpen} onOpenChange={setEditTilesOpen}>
+            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
+              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
+                Edit Tiles
+              </h2>
+              <ChevronDown className={`h-4 w-4 transition-transform ${editTilesOpen ? "" : "-rotate-90"}`} />
+            </CollapsibleTrigger>
+            <CollapsibleContent className="space-y-3">
+              <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="tiles">Tiles</TabsTrigger>
+                  <TabsTrigger value="troops">Troops</TabsTrigger>
+                </TabsList>
+                <TabsContent value="tiles" className="space-y-4 mt-4">
+                  <TilePropertiesPanel 
+                    tile={selectedTileData} 
+                    onUpdateTile={handleUpdateTile} 
+                    onRemoveTile={handleRemoveTile}
+                    onAddTileAbove={handleAddTileAbove}
+                    onAddTileBelow={handleAddTileBelow}
+                  />
+                  <Legend />
+                </TabsContent>
+                <TabsContent value="troops" className="space-y-4 mt-4">
+                  <TroopControls onAddTroop={handleAddTroop} />
+                  <TroopList
+                    troops={troops}
+                    selectedTroopId={selectedTroopId}
+                    onSelectTroop={setSelectedTroopId}
+                    onRemoveTroop={(troopId) => {
+                      setTroops(troops.filter((t) => t.EntityId !== troopId));
+                      const troop = troops.find(t => t.EntityId === troopId);
+                      if (troop) {
+                        toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                      }
+                      if (selectedTroopId === troopId) {
+                        setSelectedTroopId(null);
+                      }
+                    }}
+                  />
+                  <TroopPropertiesPanel 
+                    troop={selectedTroopData}
+                    onUpdateTroop={handleUpdateTroop}
+                    onRemoveTroop={handleRemoveTroop}
+                  />
+                </TabsContent>
+              </Tabs>
+            </CollapsibleContent>
+          </Collapsible>
         </div>
       </aside>
 
