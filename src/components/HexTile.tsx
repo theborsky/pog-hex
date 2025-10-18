@@ -41,8 +41,7 @@ export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, bas
     return troop.Owner === 1 ? "#3b82f6" : "#ef4444"; // Blue for Player 1, Red for Player 2
   };
 
-  // Create inset hex that's properly centered - use same size but with transform
-  const insetHexPath = getHexPath(25);
+  const insetHexPath = getHexPath(25); // 5 pixels smaller radius for inset
 
   return (
     <g
