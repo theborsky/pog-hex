@@ -72,7 +72,7 @@ export const TroopList = ({ troops, selectedTroopId, onSelectTroop, onRemoveTroo
         <CardTitle className="text-sm">Troop List ({troops.length})</CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        <ScrollArea className="h-[260px]">
+        <ScrollArea className="h-[390px]">
           <div className="space-y-3 p-4">
             {regularTroops.length > 0 && (
               <div className="space-y-1">
