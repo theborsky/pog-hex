@@ -39,19 +39,30 @@ export function getHexPath(size: number = HEX_SIZE): string {
  */
 export function getBaseCoveredTiles(pos: Position): Position[] {
   const isEvenColumn = pos.x % 2 === 0;
-  const yOffsetBelow = isEvenColumn ? -1 : 1;
-  const yOffsetAbove = isEvenColumn ? 1 : -1;
   
-  return [
-    // 3 tiles below
-    { x: pos.x - 1, y: pos.y + yOffsetBelow },
-    { x: pos.x, y: pos.y + yOffsetBelow },
-    { x: pos.x + 1, y: pos.y + yOffsetBelow },
-    // 3 tiles above
-    { x: pos.x - 1, y: pos.y + yOffsetAbove },
-    { x: pos.x, y: pos.y + yOffsetAbove },
-    { x: pos.x + 1, y: pos.y + yOffsetAbove },
-  ];
+  if (isEvenColumn) {
+    return [
+      // 3 tiles below
+      { x: pos.x - 1, y: pos.y - 1 },
+      { x: pos.x, y: pos.y - 1 },
+      { x: pos.x + 1, y: pos.y - 1 },
+      // 3 tiles above
+      { x: pos.x - 1, y: pos.y },
+      { x: pos.x, y: pos.y + 1 },
+      { x: pos.x + 1, y: pos.y },
+    ];
+  } else {
+    return [
+      // 3 tiles below
+      { x: pos.x - 1, y: pos.y },
+      { x: pos.x, y: pos.y - 1 },
+      { x: pos.x + 1, y: pos.y },
+      // 3 tiles above
+      { x: pos.x - 1, y: pos.y + 1 },
+      { x: pos.x, y: pos.y + 1 },
+      { x: pos.x + 1, y: pos.y + 1 },
+    ];
+  }
 }
 
 export const hexConstants = {
