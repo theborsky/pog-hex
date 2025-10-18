@@ -16,12 +16,12 @@ export function hexToPixel(pos: Position): PixelCoord {
 }
 
 /**
- * Generate SVG path for a hexagon centered at origin
+ * Generate SVG path for a flat-top hexagon centered at origin
  */
 export function getHexPath(size: number = HEX_SIZE): string {
   const points: PixelCoord[] = [];
   for (let i = 0; i < 6; i++) {
-    const angle = (Math.PI / 3) * i - Math.PI / 2;
+    const angle = (Math.PI / 3) * i; // Start at 0 for flat-top
     points.push({
       x: size * Math.cos(angle),
       y: size * Math.sin(angle),
