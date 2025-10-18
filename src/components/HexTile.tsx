@@ -24,11 +24,6 @@ export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
   };
 
   const getStrokeColor = () => {
-    // Check if there's a troop with Type !== 0 (None)
-    if (troop && troop.Type !== 0) {
-      return troop.Owner === 1 ? "#3b82f6" : "#ef4444"; // Blue for Player 1, Red for Player 2
-    }
-    
     if (isSelected) return "hsl(var(--tile-selected-stroke))";
     if (tile.IsSpawnP1) return "hsl(var(--tile-spawn-p1-stroke))";
     if (tile.IsSpawnP2) return "hsl(var(--tile-spawn-p2-stroke))";
@@ -37,6 +32,13 @@ export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
     if (tile.IsObstacle) return "hsl(var(--tile-obstacle-stroke))";
     return "hsl(var(--tile-walkable-stroke))";
   };
+
+  const getTroopStrokeColor = () => {
+    if (!troop || troop.Type === 0) return null;
+    return troop.Owner === 1 ? "#3b82f6" : "#ef4444"; // Blue for Player 1, Red for Player 2
+  };
+
+  const insetHexPath = getHexPath(25); // 5 pixels smaller radius for inset
 
   return (
     <g
@@ -50,6 +52,14 @@ export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
         stroke={getStrokeColor()}
         strokeWidth={isSelected ? 3 : 2}
       />
+      {getTroopStrokeColor() && (
+        <path
+          d={insetHexPath}
+          fill="none"
+          stroke={getTroopStrokeColor()!}
+          strokeWidth={1.5}
+        />
+      )}
       {troop && troop.Type !== 0 && (
         <text
           x={0}
