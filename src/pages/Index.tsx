@@ -376,7 +376,7 @@ const Index = () => {
             <img src={pogLogo} alt="POG Logo" className="h-16 w-auto" />
           </div>
           <h1 className="text-2xl font-bold text-slate-50 text-center">Battlefield Editor</h1>
-          <p className="text-sm text-slate-400 mt-1 text-center">Even-Q vertical layout</p>
+          <p className="text-sm text-slate-400 mt-1 text-center">Customize layout and troops</p>
         </div>
         <div className="p-4 space-y-4">
           {/* Load and Save Section */}
