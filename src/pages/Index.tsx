@@ -73,7 +73,8 @@ const Index = () => {
         setSelectedTroopId(troopAtPos.EntityId);
       } else {
         // No troop at this position, create a new one
-        handleAddTroop(pos.x, pos.y);
+        const newTroopId = handleAddTroop(pos.x, pos.y);
+        setSelectedTroopId(newTroopId);
       }
     }
   };
@@ -268,6 +269,7 @@ const Index = () => {
     };
     setTroops([...troops, newTroop]);
     toast.success(`Added troop at (${x}, ${y})`);
+    return newEntityId;
   };
 
   const handleUpdateTroop = (updates: Partial<Troop>) => {
