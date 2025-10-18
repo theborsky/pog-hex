@@ -29,7 +29,7 @@ const Index = () => {
   const [exportFilename, setExportFilename] = useState("hex-grid");
   const [loadSaveOpen, setLoadSaveOpen] = useState(false);
   const [editGridOpen, setEditGridOpen] = useState(false);
-  const [editTilesOpen, setEditTilesOpen] = useState(false);
+  const [editTilesOpen, setEditTilesOpen] = useState(true);
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
