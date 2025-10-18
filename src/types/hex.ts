@@ -13,8 +13,16 @@ export interface HexTile {
   IsSpawnP2: boolean;
 }
 
+export interface Troop {
+  EntityId: number;
+  Pos: Position;
+  Type: number;
+  Owner: number;
+}
+
 export interface HexGrid {
   Tiles: HexTile[];
+  Troops?: Troop[];
 }
 
 export interface PixelCoord {

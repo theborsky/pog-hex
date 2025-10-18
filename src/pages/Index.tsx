@@ -1,14 +1,20 @@
 import { useState } from "react";
-import { HexGrid as HexGridType, HexTile, Position } from "@/types/hex";
+import { HexGrid as HexGridType, HexTile, Position, Troop } from "@/types/hex";
 import { HexGrid } from "@/components/HexGrid";
 import { TilePropertiesPanel } from "@/components/TilePropertiesPanel";
+import { TroopPropertiesPanel } from "@/components/TroopPropertiesPanel";
+import { TroopControls } from "@/components/TroopControls";
 import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { toast } from "sonner";
 
 const Index = () => {
   const [tiles, setTiles] = useState<HexTile[]>([]);
+  const [troops, setTroops] = useState<Troop[]>([]);
   const [selectedTile, setSelectedTile] = useState<Position | null>(null);
+  const [selectedTroopId, setSelectedTroopId] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<"tiles" | "troops">("tiles");
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
@@ -16,8 +22,10 @@ const Index = () => {
       try {
         const json = JSON.parse(e.target?.result as string) as HexGridType;
         setTiles(json.Tiles);
+        setTroops(json.Troops || []);
         setSelectedTile(null);
-        toast.success(`Imported ${json.Tiles.length} tiles`);
+        setSelectedTroopId(null);
+        toast.success(`Imported ${json.Tiles.length} tiles and ${json.Troops?.length || 0} troops`);
       } catch (error) {
         toast.error("Failed to import JSON file");
         console.error(error);
@@ -27,7 +35,7 @@ const Index = () => {
   };
 
   const handleExport = () => {
-    const gridData: HexGridType = { Tiles: tiles };
+    const gridData: HexGridType = { Tiles: tiles, Troops: troops };
     const json = JSON.stringify(gridData, null, 4);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
@@ -223,8 +231,43 @@ const Index = () => {
     toast.success(`Added tile at (${newPos.x}, ${newPos.y})`);
   };
 
+  const handleAddTroop = (x: number, y: number) => {
+    const newEntityId = troops.length > 0 ? Math.max(...troops.map(t => t.EntityId)) + 1 : 1;
+    const newTroop: Troop = {
+      EntityId: newEntityId,
+      Pos: { x, y },
+      Type: 0,
+      Owner: 1,
+    };
+    setTroops([...troops, newTroop]);
+    toast.success(`Added troop at (${x}, ${y})`);
+  };
+
+  const handleUpdateTroop = (updates: Partial<Troop>) => {
+    if (selectedTroopId === null) return;
+    setTroops((prevTroops) =>
+      prevTroops.map((troop) =>
+        troop.EntityId === selectedTroopId ? { ...troop, ...updates } : troop
+      )
+    );
+  };
+
+  const handleRemoveTroop = () => {
+    if (selectedTroopId === null) return;
+    setTroops(troops.filter((t) => t.EntityId !== selectedTroopId));
+    const troop = troops.find(t => t.EntityId === selectedTroopId);
+    if (troop) {
+      toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+    }
+    setSelectedTroopId(null);
+  };
+
   const selectedTileData = selectedTile
     ? tiles.find((t) => t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y) || null
+    : null;
+
+  const selectedTroopData = selectedTroopId !== null
+    ? troops.find((t) => t.EntityId === selectedTroopId) || null
     : null;
 
   return (
@@ -244,14 +287,31 @@ const Index = () => {
             onAddRow={handleAddRow}
             onRemoveRow={handleRemoveRow}
           />
-          <TilePropertiesPanel 
-            tile={selectedTileData} 
-            onUpdateTile={handleUpdateTile} 
-            onRemoveTile={handleRemoveTile}
-            onAddTileAbove={handleAddTileAbove}
-            onAddTileBelow={handleAddTileBelow}
-          />
-          <Legend />
+          
+          <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
+            <TabsList className="grid w-full grid-cols-2">
+              <TabsTrigger value="tiles">Tiles</TabsTrigger>
+              <TabsTrigger value="troops">Troops</TabsTrigger>
+            </TabsList>
+            <TabsContent value="tiles" className="space-y-4 mt-4">
+              <TilePropertiesPanel 
+                tile={selectedTileData} 
+                onUpdateTile={handleUpdateTile} 
+                onRemoveTile={handleRemoveTile}
+                onAddTileAbove={handleAddTileAbove}
+                onAddTileBelow={handleAddTileBelow}
+              />
+              <Legend />
+            </TabsContent>
+            <TabsContent value="troops" className="space-y-4 mt-4">
+              <TroopControls onAddTroop={handleAddTroop} />
+              <TroopPropertiesPanel 
+                troop={selectedTroopData}
+                onUpdateTroop={handleUpdateTroop}
+                onRemoveTroop={handleRemoveTroop}
+              />
+            </TabsContent>
+          </Tabs>
         </div>
       </aside>
 
