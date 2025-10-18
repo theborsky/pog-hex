@@ -66,13 +66,18 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: Tr
         </div>
         <div className="space-y-2">
           <Label htmlFor="owner" className="text-xs">Owner</Label>
-          <Input
-            id="owner"
-            type="number"
-            value={troop.Owner}
-            onChange={(e) => onUpdateTroop({ Owner: parseInt(e.target.value) })}
-            className="h-8"
-          />
+          <Select
+            value={troop.Owner.toString()}
+            onValueChange={(value) => onUpdateTroop({ Owner: parseInt(value) })}
+          >
+            <SelectTrigger className="h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="1">Player 1</SelectItem>
+              <SelectItem value="2">Player 2</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
         <Button 
           onClick={onRemoveTroop} 
