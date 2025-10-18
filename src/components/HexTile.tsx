@@ -9,9 +9,10 @@ interface HexTileProps {
   troop?: Troop;
   isCoveredByBase?: boolean;
   baseOwner?: number;
+  viewMode: "tiles" | "troops";
 }
 
-export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, baseOwner }: HexTileProps) => {
+export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, baseOwner, viewMode }: HexTileProps) => {
   const pixel = hexToPixel(tile.Pos);
   const hexPath = getHexPath();
 
@@ -70,6 +71,14 @@ export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, bas
           strokeWidth={1}
           strokeDasharray="4 2"
           opacity={0.7}
+        />
+      )}
+      {isSelected && viewMode === "troops" && (
+        <path
+          d={insetHexPath}
+          fill="none"
+          stroke="#9333ea"
+          strokeWidth={2}
         />
       )}
       {troop && troop.Type !== 0 && (

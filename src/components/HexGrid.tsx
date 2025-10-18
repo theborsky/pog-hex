@@ -9,9 +9,10 @@ interface HexGridProps {
   selectedTile: Position | null;
   onTileClick: (pos: Position) => void;
   troops: Troop[];
+  viewMode: "tiles" | "troops";
 }
 
-export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridProps) => {
+export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: HexGridProps) => {
   const bounds = useMemo(() => {
     if (tiles.length === 0) {
       return { minX: 0, maxX: 0, minY: 0, maxY: 0 };
@@ -72,6 +73,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
               }
               isCoveredByBase={isCoveredByBase}
               baseOwner={baseOwner}
+              viewMode={viewMode}
               onClick={() => onTileClick(tile.Pos)}
             />
           );
