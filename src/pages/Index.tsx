@@ -27,7 +27,7 @@ const Index = () => {
   const [viewMode, setViewMode] = useState<"tiles" | "troops">("tiles");
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [exportFilename, setExportFilename] = useState("hex-grid");
-  const [loadSaveOpen, setLoadSaveOpen] = useState(false);
+  const [loadSaveOpen, setLoadSaveOpen] = useState(true);
   const [editGridOpen, setEditGridOpen] = useState(false);
   const [editTilesOpen, setEditTilesOpen] = useState(true);
 
