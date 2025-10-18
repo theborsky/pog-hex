@@ -47,6 +47,18 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: 
   const viewBoxX = bounds.minX - padding;
   const viewBoxY = bounds.minY - padding;
 
+  // Sort tiles so selected tile renders last (on top)
+  const sortedTiles = useMemo(() => {
+    if (!selectedTile) return tiles;
+    return [...tiles].sort((a, b) => {
+      const aIsSelected = a.Pos.x === selectedTile.x && a.Pos.y === selectedTile.y;
+      const bIsSelected = b.Pos.x === selectedTile.x && b.Pos.y === selectedTile.y;
+      if (aIsSelected) return 1;
+      if (bIsSelected) return -1;
+      return 0;
+    });
+  }, [tiles, selectedTile]);
+
   return (
     <div className="w-full h-full flex items-center justify-center bg-background overflow-auto">
       <svg
@@ -54,7 +66,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: 
         className="max-w-full max-h-full"
         style={{ minHeight: "400px" }}
       >
-        {tiles.map((tile) => {
+        {sortedTiles.map((tile) => {
           const troopAtTile = troops.find(
             (t) => t.Pos.x === tile.Pos.x && t.Pos.y === tile.Pos.y
           );
