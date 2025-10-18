@@ -16,7 +16,7 @@ interface TroopPropertiesPanelProps {
 export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: TroopPropertiesPanelProps) => {
   if (!troop) {
     return (
-      <Card>
+      <Card className="bg-[#999] border-slate-700">
         <CardHeader>
           <CardTitle className="text-sm">Troop Properties</CardTitle>
         </CardHeader>
@@ -28,7 +28,7 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: Tr
   }
 
   return (
-    <Card>
+    <Card className="bg-[#999] border-slate-700">
       <CardHeader>
         <CardTitle className="text-sm">Troop Properties</CardTitle>
         <p className="text-xs text-muted-foreground">

@@ -12,7 +12,7 @@ export const Legend = () => {
   ];
 
   return (
-    <Card>
+    <Card className="bg-[#999] border-slate-700">
       <CardHeader>
         <CardTitle className="text-lg">Legend</CardTitle>
       </CardHeader>

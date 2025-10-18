@@ -24,7 +24,7 @@ export const TroopControls = ({ onAddTroop }: TroopControlsProps) => {
   };
 
   return (
-    <Card>
+    <Card className="bg-[#999] border-slate-700">
       <CardHeader>
         <CardTitle className="text-sm">Troop Controls</CardTitle>
       </CardHeader>

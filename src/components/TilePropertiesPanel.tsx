@@ -16,7 +16,7 @@ interface TilePropertiesPanelProps {
 export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTileAbove, onAddTileBelow }: TilePropertiesPanelProps) => {
   if (!tile) {
     return (
-      <Card>
+      <Card className="bg-[#999] border-slate-700">
         <CardHeader>
           <CardTitle className="text-lg">Tile Properties</CardTitle>
         </CardHeader>
@@ -37,7 +37,7 @@ export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTil
   ] as const;
 
   return (
-    <Card>
+    <Card className="bg-[#999] border-slate-700">
       <CardHeader>
         <CardTitle className="text-lg">Tile Properties</CardTitle>
         <p className="text-sm text-muted-foreground">
