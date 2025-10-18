@@ -100,8 +100,12 @@ const Index = () => {
   const handleUpdateTile = (updates: Partial<HexTile>) => {
     if (!selectedTile) return;
 
+    // If Obstacle is being set to true, automatically set Walkable to false
+    if (updates.IsObstacle === true) {
+      updates.IsWalkable = false;
+    }
     // If Obstacle is being set to false, automatically set Walkable to true
-    if (updates.IsObstacle === false) {
+    else if (updates.IsObstacle === false) {
       updates.IsWalkable = true;
     }
 
