@@ -103,7 +103,9 @@ export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, bas
         y={troop && troop.Type !== 0 ? 5 : 0}
         textAnchor="middle"
         dominantBaseline="middle"
-        className="text-[10px] fill-foreground/50 font-mono pointer-events-none select-none"
+        className={`text-[10px] font-mono pointer-events-none select-none ${
+          tile.IsHole ? 'fill-white' : 'fill-foreground/50'
+        }`}
       >
         {tile.Pos.x},{tile.Pos.y}
       </text>
