@@ -1,12 +1,209 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { HexGrid as HexGridType, HexTile, Position } from "@/types/hex";
+import { HexGrid } from "@/components/HexGrid";
+import { TilePropertiesPanel } from "@/components/TilePropertiesPanel";
+import { GridControls } from "@/components/GridControls";
+import { Legend } from "@/components/Legend";
+import { toast } from "sonner";
 
 const Index = () => {
+  const [tiles, setTiles] = useState<HexTile[]>([]);
+  const [selectedTile, setSelectedTile] = useState<Position | null>(null);
+
+  const handleImport = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target?.result as string) as HexGridType;
+        setTiles(json.Tiles);
+        setSelectedTile(null);
+        toast.success(`Imported ${json.Tiles.length} tiles`);
+      } catch (error) {
+        toast.error("Failed to import JSON file");
+        console.error(error);
+      }
+    };
+    reader.readAsText(file);
+  };
+
+  const handleExport = () => {
+    const gridData: HexGridType = { Tiles: tiles };
+    const json = JSON.stringify(gridData, null, 4);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "hex-grid.json";
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success("Grid exported successfully");
+  };
+
+  const handleTileClick = (pos: Position) => {
+    setSelectedTile(pos);
+  };
+
+  const handleUpdateTile = (updates: Partial<HexTile>) => {
+    if (!selectedTile) return;
+
+    setTiles((prevTiles) =>
+      prevTiles.map((tile) =>
+        tile.Pos.x === selectedTile.x && tile.Pos.y === selectedTile.y
+          ? { ...tile, ...updates }
+          : tile
+      )
+    );
+  };
+
+  const handleAddColumn = (x: number) => {
+    if (isNaN(x)) {
+      toast.error("Please enter a valid X coordinate");
+      return;
+    }
+
+    // Check if column already exists
+    const existingTiles = tiles.filter((t) => t.Pos.x === x);
+    if (existingTiles.length > 0) {
+      toast.error(`Column X=${x} already exists`);
+      return;
+    }
+
+    // Find Y range from existing tiles
+    const allY = tiles.map((t) => t.Pos.y);
+    const minY = allY.length > 0 ? Math.min(...allY) : 0;
+    const maxY = allY.length > 0 ? Math.max(...allY) : 0;
+
+    // Create new tiles for this column
+    const newTiles: HexTile[] = [];
+    for (let y = minY; y <= maxY; y++) {
+      newTiles.push({
+        Pos: { x, y },
+        IsWalkable: true,
+        IsHole: false,
+        IsBonus: false,
+        IsObstacle: false,
+        IsSpawnP1: false,
+        IsSpawnP2: false,
+      });
+    }
+
+    setTiles([...tiles, ...newTiles]);
+    toast.success(`Added column X=${x} with ${newTiles.length} tiles`);
+  };
+
+  const handleRemoveColumn = (x: number) => {
+    if (isNaN(x)) {
+      toast.error("Please enter a valid X coordinate");
+      return;
+    }
+
+    const tilesInColumn = tiles.filter((t) => t.Pos.x === x);
+    if (tilesInColumn.length === 0) {
+      toast.error(`No tiles found in column X=${x}`);
+      return;
+    }
+
+    setTiles(tiles.filter((t) => t.Pos.x !== x));
+    if (selectedTile?.x === x) {
+      setSelectedTile(null);
+    }
+    toast.success(`Removed column X=${x} (${tilesInColumn.length} tiles)`);
+  };
+
+  const handleAddRow = (y: number) => {
+    if (isNaN(y)) {
+      toast.error("Please enter a valid Y coordinate");
+      return;
+    }
+
+    // Check if row already exists
+    const existingTiles = tiles.filter((t) => t.Pos.y === y);
+    if (existingTiles.length > 0) {
+      toast.error(`Row Y=${y} already exists`);
+      return;
+    }
+
+    // Find X range from existing tiles
+    const allX = tiles.map((t) => t.Pos.x);
+    const minX = allX.length > 0 ? Math.min(...allX) : 0;
+    const maxX = allX.length > 0 ? Math.max(...allX) : 0;
+
+    // Create new tiles for this row
+    const newTiles: HexTile[] = [];
+    for (let x = minX; x <= maxX; x++) {
+      newTiles.push({
+        Pos: { x, y },
+        IsWalkable: true,
+        IsHole: false,
+        IsBonus: false,
+        IsObstacle: false,
+        IsSpawnP1: false,
+        IsSpawnP2: false,
+      });
+    }
+
+    setTiles([...tiles, ...newTiles]);
+    toast.success(`Added row Y=${y} with ${newTiles.length} tiles`);
+  };
+
+  const handleRemoveRow = (y: number) => {
+    if (isNaN(y)) {
+      toast.error("Please enter a valid Y coordinate");
+      return;
+    }
+
+    const tilesInRow = tiles.filter((t) => t.Pos.y === y);
+    if (tilesInRow.length === 0) {
+      toast.error(`No tiles found in row Y=${y}`);
+      return;
+    }
+
+    setTiles(tiles.filter((t) => t.Pos.y !== y));
+    if (selectedTile?.y === y) {
+      setSelectedTile(null);
+    }
+    toast.success(`Removed row Y=${y} (${tilesInRow.length} tiles)`);
+  };
+
+  const selectedTileData = selectedTile
+    ? tiles.find((t) => t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y) || null
+    : null;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="flex h-screen overflow-hidden">
+      {/* Sidebar */}
+      <aside className="w-80 border-r border-border bg-card overflow-y-auto flex-shrink-0">
+        <div className="p-4 border-b border-border">
+          <h1 className="text-2xl font-bold text-foreground">Hex Grid Editor</h1>
+          <p className="text-sm text-muted-foreground mt-1">Even-Q vertical layout</p>
+        </div>
+        <div className="p-4 space-y-4">
+          <GridControls
+            onImport={handleImport}
+            onExport={handleExport}
+            onAddColumn={handleAddColumn}
+            onRemoveColumn={handleRemoveColumn}
+            onAddRow={handleAddRow}
+            onRemoveRow={handleRemoveRow}
+          />
+          <TilePropertiesPanel tile={selectedTileData} onUpdateTile={handleUpdateTile} />
+          <Legend />
+        </div>
+      </aside>
+
+      {/* Main Canvas */}
+      <main className="flex-1 overflow-hidden">
+        {tiles.length === 0 ? (
+          <div className="h-full flex items-center justify-center">
+            <div className="text-center">
+              <h2 className="text-2xl font-semibold mb-2">No Grid Loaded</h2>
+              <p className="text-muted-foreground">Import a JSON file to get started</p>
+            </div>
+          </div>
+        ) : (
+          <HexGrid tiles={tiles} selectedTile={selectedTile} onTileClick={handleTileClick} />
+        )}
+      </main>
     </div>
   );
 };
