@@ -331,13 +331,13 @@ const Index = () => {
       </Dialog>
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-80 border-r border-border bg-card overflow-y-auto flex-shrink-0">
-        <div className="p-4 border-b border-border">
+      <aside className="w-80 border-r border-border bg-slate-950 text-slate-50 overflow-y-auto flex-shrink-0">
+        <div className="p-4 border-b border-slate-800">
           <div className="flex items-center justify-center mb-3">
             <img src={pogLogo} alt="POG Logo" className="h-16 w-auto" />
           </div>
-          <h1 className="text-2xl font-bold text-foreground text-center">POG Map Editor</h1>
-          <p className="text-sm text-muted-foreground mt-1 text-center">Even-Q vertical layout</p>
+          <h1 className="text-2xl font-bold text-slate-50 text-center">POG Map Editor</h1>
+          <p className="text-sm text-slate-400 mt-1 text-center">Even-Q vertical layout</p>
         </div>
         <div className="p-4 space-y-4">
           <GridControls
