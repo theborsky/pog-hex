@@ -78,6 +78,14 @@ const Index = () => {
     }
   };
 
+  const handleClearMap = () => {
+    setTiles([]);
+    setTroops([]);
+    setSelectedTile(null);
+    setSelectedTroopId(null);
+    toast.success("Map cleared");
+  };
+
   const handleTileClick = (pos: Position) => {
     if (viewMode === "tiles") {
       setSelectedTile(pos);
@@ -398,6 +406,13 @@ const Index = () => {
                 onRemoveRow={handleRemoveRow}
                 showImportExportOnly
               />
+              <Button 
+                onClick={handleClearMap} 
+                variant="destructive" 
+                className="w-full"
+              >
+                Clear Map
+              </Button>
             </CollapsibleContent>
           </Collapsible>
 
