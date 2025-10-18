@@ -42,7 +42,7 @@ export const TroopList = ({ troops, selectedTroopId, onSelectTroop, onRemoveTroo
     >
       <div className="flex-1 min-w-0">
         <p className="text-sm font-medium truncate">
-          {getTroopTypeName(troop.Type)}
+          {getTroopTypeName(troop.Type)} (ID: {troop.EntityId})
         </p>
         <p className={`text-xs ${
           selectedTroopId === troop.EntityId
