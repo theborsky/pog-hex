@@ -356,55 +356,84 @@ const Index = () => {
           <p className="text-sm text-slate-400 mt-1 text-center">Even-Q vertical layout</p>
         </div>
         <div className="p-4 space-y-4">
-          <MapSelector onLoadMap={handleLoadPredefinedMap} />
-          <GridControls
-            onImport={handleImport}
-            onExport={handleExport}
-            onAddColumn={handleAddColumn}
-            onRemoveColumn={handleRemoveColumn}
-            onAddRow={handleAddRow}
-            onRemoveRow={handleRemoveRow}
-          />
-          
-          <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
-            <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="tiles">Tiles</TabsTrigger>
-              <TabsTrigger value="troops">Troops</TabsTrigger>
-            </TabsList>
-            <TabsContent value="tiles" className="space-y-4 mt-4">
-              <TilePropertiesPanel 
-                tile={selectedTileData} 
-                onUpdateTile={handleUpdateTile} 
-                onRemoveTile={handleRemoveTile}
-                onAddTileAbove={handleAddTileAbove}
-                onAddTileBelow={handleAddTileBelow}
-              />
-              <Legend />
-            </TabsContent>
-            <TabsContent value="troops" className="space-y-4 mt-4">
-              <TroopControls onAddTroop={handleAddTroop} />
-              <TroopList
-                troops={troops}
-                selectedTroopId={selectedTroopId}
-                onSelectTroop={setSelectedTroopId}
-                onRemoveTroop={(troopId) => {
-                  setTroops(troops.filter((t) => t.EntityId !== troopId));
-                  const troop = troops.find(t => t.EntityId === troopId);
-                  if (troop) {
-                    toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-                  }
-                  if (selectedTroopId === troopId) {
-                    setSelectedTroopId(null);
-                  }
-                }}
-              />
-              <TroopPropertiesPanel 
-                troop={selectedTroopData}
-                onUpdateTroop={handleUpdateTroop}
-                onRemoveTroop={handleRemoveTroop}
-              />
-            </TabsContent>
-          </Tabs>
+          {/* Load and Save Section */}
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Load and Save
+            </h2>
+            <MapSelector onLoadMap={handleLoadPredefinedMap} />
+            <GridControls
+              onImport={handleImport}
+              onExport={handleExport}
+              onAddColumn={handleAddColumn}
+              onRemoveColumn={handleRemoveColumn}
+              onAddRow={handleAddRow}
+              onRemoveRow={handleRemoveRow}
+              showImportExportOnly
+            />
+          </div>
+
+          {/* Edit Grid Section */}
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Edit Grid
+            </h2>
+            <GridControls
+              onImport={handleImport}
+              onExport={handleExport}
+              onAddColumn={handleAddColumn}
+              onRemoveColumn={handleRemoveColumn}
+              onAddRow={handleAddRow}
+              onRemoveRow={handleRemoveRow}
+              showGridControlsOnly
+            />
+          </div>
+
+          {/* Edit Tiles Section */}
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Edit Tiles
+            </h2>
+            <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="tiles">Tiles</TabsTrigger>
+                <TabsTrigger value="troops">Troops</TabsTrigger>
+              </TabsList>
+              <TabsContent value="tiles" className="space-y-4 mt-4">
+                <TilePropertiesPanel 
+                  tile={selectedTileData} 
+                  onUpdateTile={handleUpdateTile} 
+                  onRemoveTile={handleRemoveTile}
+                  onAddTileAbove={handleAddTileAbove}
+                  onAddTileBelow={handleAddTileBelow}
+                />
+                <Legend />
+              </TabsContent>
+              <TabsContent value="troops" className="space-y-4 mt-4">
+                <TroopControls onAddTroop={handleAddTroop} />
+                <TroopList
+                  troops={troops}
+                  selectedTroopId={selectedTroopId}
+                  onSelectTroop={setSelectedTroopId}
+                  onRemoveTroop={(troopId) => {
+                    setTroops(troops.filter((t) => t.EntityId !== troopId));
+                    const troop = troops.find(t => t.EntityId === troopId);
+                    if (troop) {
+                      toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                    }
+                    if (selectedTroopId === troopId) {
+                      setSelectedTroopId(null);
+                    }
+                  }}
+                />
+                <TroopPropertiesPanel 
+                  troop={selectedTroopData}
+                  onUpdateTroop={handleUpdateTroop}
+                  onRemoveTroop={handleRemoveTroop}
+                />
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
       </aside>
 
