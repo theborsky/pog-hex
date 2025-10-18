@@ -12,8 +12,8 @@ const VERTICAL_SPACING = 1.5 * HEX_SIZE; // vertical distance between rows
  */
 export function hexToPixel(pos: Position): PixelCoord {
   const x = pos.x * HEX_WIDTH;
-  // Even columns offset by 0.75 * HEX_SIZE, with 20px bottom margin
-  const y = -pos.y * VERTICAL_SPACING - (pos.x % 2 === 0 ? 0.75 * HEX_SIZE : 0) + 20;
+  // Even columns offset by 0.75 * HEX_SIZE, with 45px bottom margin
+  const y = -pos.y * VERTICAL_SPACING - (pos.x % 2 === 0 ? 0.75 * HEX_SIZE : 0) + 45;
   return { x, y };
 }
 
