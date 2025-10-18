@@ -26,7 +26,7 @@ export const TroopControls = ({ onAddTroop }: TroopControlsProps) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-sm">Troop Controls</CardTitle>
+        <CardTitle className="text-sm">Add Unit</CardTitle>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="space-y-2">
