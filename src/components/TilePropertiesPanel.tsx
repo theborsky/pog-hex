@@ -3,15 +3,17 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { Trash2, ArrowUp, ArrowDown } from "lucide-react";
 
 interface TilePropertiesPanelProps {
   tile: HexTile | null;
   onUpdateTile: (updates: Partial<HexTile>) => void;
   onRemoveTile: () => void;
+  onAddTileAbove: () => void;
+  onAddTileBelow: () => void;
 }
 
-export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile }: TilePropertiesPanelProps) => {
+export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTileAbove, onAddTileBelow }: TilePropertiesPanelProps) => {
   if (!tile) {
     return (
       <Card>
@@ -65,15 +67,37 @@ export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile }: TilePr
             />
           </div>
         ))}
-        <Button 
-          onClick={onRemoveTile} 
-          variant="destructive" 
-          className="w-full mt-4"
-          size="sm"
-        >
-          <Trash2 className="mr-2 h-4 w-4" />
-          Remove Tile
-        </Button>
+        <div className="space-y-2 pt-2">
+          <div className="flex gap-2">
+            <Button 
+              onClick={onAddTileAbove} 
+              variant="secondary" 
+              className="flex-1"
+              size="sm"
+            >
+              <ArrowUp className="mr-1 h-4 w-4" />
+              Add Above
+            </Button>
+            <Button 
+              onClick={onAddTileBelow} 
+              variant="secondary" 
+              className="flex-1"
+              size="sm"
+            >
+              <ArrowDown className="mr-1 h-4 w-4" />
+              Add Below
+            </Button>
+          </div>
+          <Button 
+            onClick={onRemoveTile} 
+            variant="destructive" 
+            className="w-full"
+            size="sm"
+          >
+            <Trash2 className="mr-2 h-4 w-4" />
+            Remove Tile
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

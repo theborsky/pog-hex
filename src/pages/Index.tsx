@@ -173,6 +173,56 @@ const Index = () => {
     setSelectedTile(null);
   };
 
+  const handleAddTileAbove = () => {
+    if (!selectedTile) return;
+
+    const newPos = { x: selectedTile.x, y: selectedTile.y + 1 };
+    
+    // Check if tile already exists
+    if (tiles.some((t) => t.Pos.x === newPos.x && t.Pos.y === newPos.y)) {
+      toast.error(`Tile already exists at (${newPos.x}, ${newPos.y})`);
+      return;
+    }
+
+    const newTile: HexTile = {
+      Pos: newPos,
+      IsWalkable: true,
+      IsHole: false,
+      IsBonus: false,
+      IsObstacle: false,
+      IsSpawnP1: false,
+      IsSpawnP2: false,
+    };
+
+    setTiles([...tiles, newTile]);
+    toast.success(`Added tile at (${newPos.x}, ${newPos.y})`);
+  };
+
+  const handleAddTileBelow = () => {
+    if (!selectedTile) return;
+
+    const newPos = { x: selectedTile.x, y: selectedTile.y - 1 };
+    
+    // Check if tile already exists
+    if (tiles.some((t) => t.Pos.x === newPos.x && t.Pos.y === newPos.y)) {
+      toast.error(`Tile already exists at (${newPos.x}, ${newPos.y})`);
+      return;
+    }
+
+    const newTile: HexTile = {
+      Pos: newPos,
+      IsWalkable: true,
+      IsHole: false,
+      IsBonus: false,
+      IsObstacle: false,
+      IsSpawnP1: false,
+      IsSpawnP2: false,
+    };
+
+    setTiles([...tiles, newTile]);
+    toast.success(`Added tile at (${newPos.x}, ${newPos.y})`);
+  };
+
   const selectedTileData = selectedTile
     ? tiles.find((t) => t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y) || null
     : null;
@@ -194,7 +244,13 @@ const Index = () => {
             onAddRow={handleAddRow}
             onRemoveRow={handleRemoveRow}
           />
-          <TilePropertiesPanel tile={selectedTileData} onUpdateTile={handleUpdateTile} onRemoveTile={handleRemoveTile} />
+          <TilePropertiesPanel 
+            tile={selectedTileData} 
+            onUpdateTile={handleUpdateTile} 
+            onRemoveTile={handleRemoveTile}
+            onAddTileAbove={handleAddTileAbove}
+            onAddTileBelow={handleAddTileBelow}
+          />
           <Legend />
         </div>
       </aside>
