@@ -19,7 +19,7 @@ export const MapSelector = ({ onLoadMap }: MapSelectorProps) => {
       <Card>
         <CardHeader>
           <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity">
-            <CardTitle>Current Maps</CardTitle>
+            <CardTitle className="text-lg">Current Maps</CardTitle>
             <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? "" : "-rotate-90"}`} />
           </CollapsibleTrigger>
         </CardHeader>
