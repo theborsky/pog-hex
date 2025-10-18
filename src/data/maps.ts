@@ -1,6 +1,7 @@
 import { HexGrid } from "@/types/hex";
 import zarzaraDesertData from "./zarzara-desert.json";
 import wildSteppesData from "./wild-steppes.json";
+import saltLagoonData from "./salt-lagoon.json";
 
 export interface PredefinedMap {
   name: string;
@@ -8,6 +9,10 @@ export interface PredefinedMap {
 }
 
 export const PREDEFINED_MAPS: PredefinedMap[] = [
+  {
+    name: "Salt Lagoon",
+    data: saltLagoonData as HexGrid
+  },
   {
     name: "Wild Steppes",
     data: wildSteppesData as HexGrid
