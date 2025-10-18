@@ -1,0 +1,1123 @@
+{
+    "Tiles":
+    [
+        {
+            "Pos":
+            {
+                "x": -9,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -9,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -8,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -8,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -8,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -7,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -7,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -7,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -7,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -6,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -6,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -6,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -6,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -6,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -5,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": 4
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": true,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -4,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -3,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -2,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -2,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -2,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -2,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": true,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -2,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -1,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": -1,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 0,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 1,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 1,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 2,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 2,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 2,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 2,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": true,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 2,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 3,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": 4
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": true
+        },
+        {
+            "Pos":
+            {
+                "x": 4,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 5,
+                "y": -2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 6,
+                "y": 3
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 6,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 6,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 6,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 6,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 7,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 7,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 7,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 7,
+                "y": -1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 8,
+                "y": 2
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 8,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 8,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 9,
+                "y": 1
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        },
+        {
+            "Pos":
+            {
+                "x": 9,
+                "y": 0
+            },
+            "IsWalkable": true,
+            "IsHole": false,
+            "IsBonus": false,
+            "IsObstacle": false,
+            "IsSpawnP1": false,
+            "IsSpawnP2": false
+        }
+    ],
+    "Troops":
+    [
+        {
+            "EntityId": 1,
+            "Pos":
+            {
+                "x": -4,
+                "y": 0
+            },
+            "Type": 2,
+            "Owner": 1
+        },
+        {
+            "EntityId": 2,
+            "Pos":
+            {
+                "x": -6,
+                "y": 1
+            },
+            "Type": 1,
+            "Owner": 1
+        },
+        {
+            "EntityId": 3,
+            "Pos":
+            {
+                "x": -4,
+                "y": 3
+            },
+            "Type": 10,
+            "Owner": 1
+        },
+        {
+            "EntityId": 4,
+            "Pos":
+            {
+                "x": 0,
+                "y": 1
+            },
+            "Type": 12,
+            "Owner": 2
+        },
+        {
+            "EntityId": 5,
+            "Pos":
+            {
+                "x": 6,
+                "y": 1
+            },
+            "Type": 12,
+            "Owner": 2
+        },
+        {
+            "EntityId": 6,
+            "Pos":
+            {
+                "x": 4,
+                "y": 3
+            },
+            "Type": 10,
+            "Owner": 2
+        }
+    ],
+    "Triggers":
+    []
+}

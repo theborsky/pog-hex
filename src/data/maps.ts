@@ -3,6 +3,7 @@ import zarzaraDesertData from "./zarzara-desert.json";
 import wildSteppesData from "./wild-steppes.json";
 import saltLagoonData from "./salt-lagoon.json";
 import mtBoskData from "./mt-bosk.json";
+import sandboxTutorialData from "./sandbox-tutorial.json";
 
 export interface PredefinedMap {
   name: string;
@@ -10,6 +11,10 @@ export interface PredefinedMap {
 }
 
 export const PREDEFINED_MAPS: PredefinedMap[] = [
+  {
+    name: "Sandbox Tutorial",
+    data: sandboxTutorialData as HexGrid
+  },
   {
     name: "Mt.Bosk",
     data: mtBoskData as HexGrid
