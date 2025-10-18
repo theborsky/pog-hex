@@ -28,12 +28,12 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
 
   // Calculate which tiles are covered by bases
   const coveredByBaseTiles = useMemo(() => {
-    const covered = new Set<string>();
+    const covered = new Map<string, number>();
     troops.forEach((troop) => {
       if (troop.Type === TROOP_TYPES.Base) {
         const coveredTiles = getBaseCoveredTiles(troop.Pos);
         coveredTiles.forEach((pos) => {
-          covered.add(`${pos.x},${pos.y}`);
+          covered.set(`${pos.x},${pos.y}`, troop.Owner);
         });
       }
     });
@@ -57,10 +57,12 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
           const troopAtTile = troops.find(
             (t) => t.Pos.x === tile.Pos.x && t.Pos.y === tile.Pos.y
           );
-          const isCoveredByBase = coveredByBaseTiles.has(`${tile.Pos.x},${tile.Pos.y}`);
+          const tileKey = `${tile.Pos.x},${tile.Pos.y}`;
+          const baseOwner = coveredByBaseTiles.get(tileKey);
+          const isCoveredByBase = baseOwner !== undefined;
           return (
             <HexTile
-              key={`${tile.Pos.x},${tile.Pos.y}`}
+              key={tileKey}
               tile={tile}
               troop={troopAtTile}
               isSelected={
@@ -69,6 +71,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
                 tile.Pos.y === selectedTile.y
               }
               isCoveredByBase={isCoveredByBase}
+              baseOwner={baseOwner}
               onClick={() => onTileClick(tile.Pos)}
             />
           );
