@@ -23,6 +23,12 @@ export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase, bas
     if (tile.IsHole) return "hsl(var(--tile-hole))";
     if (tile.IsBonus) return "hsl(var(--tile-bonus))";
     if (tile.IsObstacle) return "hsl(var(--tile-obstacle))";
+    
+    // Check if all booleans are false
+    const allFalse = !tile.IsWalkable && !tile.IsHole && !tile.IsBonus && 
+                     !tile.IsObstacle && !tile.IsSpawnP1 && !tile.IsSpawnP2;
+    if (allFalse) return "hsl(var(--muted))";
+    
     return "hsl(var(--tile-walkable))";
   };
 
