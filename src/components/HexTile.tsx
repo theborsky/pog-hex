@@ -1,5 +1,6 @@
 import { HexTile as HexTileType, Troop } from "@/types/hex";
 import { hexToPixel, getHexPath } from "@/utils/hexUtils";
+import { getTroopTypeName } from "@/utils/troopTypes";
 
 interface HexTileProps {
   tile: HexTileType;
@@ -49,9 +50,20 @@ export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
         stroke={getStrokeColor()}
         strokeWidth={isSelected ? 3 : 2}
       />
+      {troop && troop.Type !== 0 && (
+        <text
+          x={0}
+          y={-8}
+          textAnchor="middle"
+          dominantBaseline="middle"
+          className="text-[8px] fill-foreground/70 font-mono pointer-events-none select-none font-semibold"
+        >
+          {getTroopTypeName(troop.Type)}
+        </text>
+      )}
       <text
         x={0}
-        y={0}
+        y={troop && troop.Type !== 0 ? 5 : 0}
         textAnchor="middle"
         dominantBaseline="middle"
         className="text-[10px] fill-foreground/50 font-mono pointer-events-none select-none"
