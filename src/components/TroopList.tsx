@@ -26,9 +26,9 @@ export const TroopList = ({ troops, selectedTroopId, onSelectTroop, onRemoveTroo
     );
   }
 
-  // Separate troops into regular and "None" type
-  const regularTroops = troops.filter(t => t.Type !== 0);
-  const noneTroops = troops.filter(t => t.Type === 0);
+  // Separate troops into regular and "None" type, sorted by EntityId
+  const regularTroops = troops.filter(t => t.Type !== 0).sort((a, b) => a.EntityId - b.EntityId);
+  const noneTroops = troops.filter(t => t.Type === 0).sort((a, b) => a.EntityId - b.EntityId);
 
   const renderTroopItem = (troop: Troop) => (
     <div
