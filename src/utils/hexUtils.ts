@@ -13,7 +13,7 @@ const HEX_HEIGHT = Math.sqrt(3) * HEX_SIZE; // vertical spacing between rows
 export function hexToPixel(pos: Position): PixelCoord {
   const x = pos.x * HEX_WIDTH;
   // Odd columns offset down by half the hexagon height
-  const y = pos.y * HEX_HEIGHT + (pos.x % 2 !== 0 ? HEX_HEIGHT * 0.5 : 0);
+  const y = -pos.y * HEX_HEIGHT - (pos.x % 2 !== 0 ? HEX_HEIGHT * 0.5 : 0);
   return { x, y };
 }
 
