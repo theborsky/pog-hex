@@ -25,6 +25,7 @@ export const GridControls = ({
 }: GridControlsProps) => {
   const [columnX, setColumnX] = useState("0");
   const [rowY, setRowY] = useState("0");
+  const [importExportOpen, setImportExportOpen] = useState(true);
   const [columnsOpen, setColumnsOpen] = useState(false);
   const [rowsOpen, setRowsOpen] = useState(false);
 
@@ -38,30 +39,37 @@ export const GridControls = ({
 
   return (
     <div className="space-y-4">
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg">Import/Export</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-2">
-          <Button onClick={onExport} className="w-full" variant="default">
-            <Download className="mr-2 h-4 w-4" />
-            Export JSON
-          </Button>
-          <Button asChild variant="secondary" className="w-full">
-            <label htmlFor="file-upload" className="cursor-pointer">
-              <Upload className="mr-2 h-4 w-4" />
-              Import JSON
-              <input
-                id="file-upload"
-                type="file"
-                accept=".json"
-                onChange={handleFileUpload}
-                className="hidden"
-              />
-            </label>
-          </Button>
-        </CardContent>
-      </Card>
+      <Collapsible open={importExportOpen} onOpenChange={setImportExportOpen}>
+        <Card>
+          <CollapsibleTrigger className="w-full">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
+              <CardTitle className="text-lg">Import/Export</CardTitle>
+              <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${importExportOpen ? 'rotate-180' : ''}`} />
+            </CardHeader>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <CardContent className="space-y-2">
+              <Button onClick={onExport} className="w-full" variant="default">
+                <Download className="mr-2 h-4 w-4" />
+                Export JSON
+              </Button>
+              <Button asChild variant="secondary" className="w-full">
+                <label htmlFor="file-upload" className="cursor-pointer">
+                  <Upload className="mr-2 h-4 w-4" />
+                  Import JSON
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept=".json"
+                    onChange={handleFileUpload}
+                    className="hidden"
+                  />
+                </label>
+              </Button>
+            </CardContent>
+          </CollapsibleContent>
+        </Card>
+      </Collapsible>
 
       <Collapsible open={columnsOpen} onOpenChange={setColumnsOpen}>
         <Card>
