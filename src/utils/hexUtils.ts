@@ -22,8 +22,10 @@ export function hexToPixel(pos: Position): PixelCoord {
  */
 export function getHexPath(size: number = HEX_SIZE): string {
   const points: PixelCoord[] = [];
+  // Start at -30° (top-right vertex) for perfect flat-top symmetry
+  const startAngle = -Math.PI / 6;
   for (let i = 0; i < 6; i++) {
-    const angle = (Math.PI / 3) * i; // Start at 0 for flat-top
+    const angle = startAngle + (Math.PI / 3) * i;
     points.push({
       x: size * Math.cos(angle),
       y: size * Math.sin(angle),
