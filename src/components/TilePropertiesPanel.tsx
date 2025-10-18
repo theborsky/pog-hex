@@ -2,13 +2,16 @@ import { HexTile } from "@/types/hex";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
 
 interface TilePropertiesPanelProps {
   tile: HexTile | null;
   onUpdateTile: (updates: Partial<HexTile>) => void;
+  onRemoveTile: () => void;
 }
 
-export const TilePropertiesPanel = ({ tile, onUpdateTile }: TilePropertiesPanelProps) => {
+export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile }: TilePropertiesPanelProps) => {
   if (!tile) {
     return (
       <Card>
@@ -62,6 +65,15 @@ export const TilePropertiesPanel = ({ tile, onUpdateTile }: TilePropertiesPanelP
             />
           </div>
         ))}
+        <Button 
+          onClick={onRemoveTile} 
+          variant="destructive" 
+          className="w-full mt-4"
+          size="sm"
+        >
+          <Trash2 className="mr-2 h-4 w-4" />
+          Remove Tile
+        </Button>
       </CardContent>
     </Card>
   );

@@ -165,6 +165,14 @@ const Index = () => {
     toast.success(`Removed row Y=${y} (${tilesInRow.length} tiles)`);
   };
 
+  const handleRemoveTile = () => {
+    if (!selectedTile) return;
+
+    setTiles(tiles.filter((t) => !(t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y)));
+    toast.success(`Removed tile at (${selectedTile.x}, ${selectedTile.y})`);
+    setSelectedTile(null);
+  };
+
   const selectedTileData = selectedTile
     ? tiles.find((t) => t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y) || null
     : null;
@@ -186,7 +194,7 @@ const Index = () => {
             onAddRow={handleAddRow}
             onRemoveRow={handleRemoveRow}
           />
-          <TilePropertiesPanel tile={selectedTileData} onUpdateTile={handleUpdateTile} />
+          <TilePropertiesPanel tile={selectedTileData} onUpdateTile={handleUpdateTile} onRemoveTile={handleRemoveTile} />
           <Legend />
         </div>
       </aside>
