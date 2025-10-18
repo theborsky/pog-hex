@@ -338,7 +338,7 @@ const Index = () => {
             </div>
           </div>
         ) : (
-          <HexGrid tiles={tiles} selectedTile={selectedTile} onTileClick={handleTileClick} />
+          <HexGrid tiles={tiles} selectedTile={selectedTile} onTileClick={handleTileClick} troops={troops} />
         )}
       </main>
     </div>

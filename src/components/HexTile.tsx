@@ -1,13 +1,14 @@
-import { HexTile as HexTileType } from "@/types/hex";
+import { HexTile as HexTileType, Troop } from "@/types/hex";
 import { hexToPixel, getHexPath } from "@/utils/hexUtils";
 
 interface HexTileProps {
   tile: HexTileType;
   isSelected: boolean;
   onClick: () => void;
+  troop?: Troop;
 }
 
-export const HexTile = ({ tile, isSelected, onClick }: HexTileProps) => {
+export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
   const pixel = hexToPixel(tile.Pos);
   const hexPath = getHexPath();
 
@@ -22,6 +23,11 @@ export const HexTile = ({ tile, isSelected, onClick }: HexTileProps) => {
   };
 
   const getStrokeColor = () => {
+    // Check if there's a troop with Type !== 0 (None)
+    if (troop && troop.Type !== 0) {
+      return troop.Owner === 1 ? "#3b82f6" : "#ef4444"; // Blue for Player 1, Red for Player 2
+    }
+    
     if (isSelected) return "hsl(var(--tile-selected-stroke))";
     if (tile.IsSpawnP1) return "hsl(var(--tile-spawn-p1-stroke))";
     if (tile.IsSpawnP2) return "hsl(var(--tile-spawn-p2-stroke))";
