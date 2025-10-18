@@ -49,7 +49,7 @@ export const GridControls = ({
             <CollapsibleTrigger className="w-full">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                 <CardTitle className="text-lg">Import/Export</CardTitle>
-                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${importExportOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-4 w-4 transition-transform ${importExportOpen ? '' : '-rotate-90'}`} />
               </CardHeader>
             </CollapsibleTrigger>
             <CollapsibleContent>
@@ -84,7 +84,7 @@ export const GridControls = ({
               <CollapsibleTrigger className="w-full">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                   <CardTitle className="text-lg">Manage Columns</CardTitle>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${columnsOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 transition-transform ${columnsOpen ? '' : '-rotate-90'}`} />
                 </CardHeader>
               </CollapsibleTrigger>
               <CollapsibleContent>
@@ -128,7 +128,7 @@ export const GridControls = ({
               <CollapsibleTrigger className="w-full">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
                   <CardTitle className="text-lg">Manage Rows</CardTitle>
-                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${rowsOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 transition-transform ${rowsOpen ? '' : '-rotate-90'}`} />
                 </CardHeader>
               </CollapsibleTrigger>
               <CollapsibleContent>
