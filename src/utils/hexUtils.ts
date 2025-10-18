@@ -8,10 +8,11 @@ const HEX_HEIGHT = 2 * HEX_SIZE;
 /**
  * Convert even-q hex coordinates to pixel coordinates
  * Even-q vertical layout: even columns are pushed down by half a hex height
+ * Y-axis: positive goes up, negative goes down
  */
 export function hexToPixel(pos: Position): PixelCoord {
   const x = pos.x * HEX_WIDTH;
-  const y = pos.y * HEX_HEIGHT * 0.75 + (pos.x % 2 === 0 ? HEX_HEIGHT * 0.5 : 0);
+  const y = -pos.y * HEX_HEIGHT * 0.75 - (pos.x % 2 === 0 ? HEX_HEIGHT * 0.5 : 0);
   return { x, y };
 }
 
