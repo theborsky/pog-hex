@@ -496,7 +496,7 @@ const Index = () => {
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
               <h2 className="text-2xl font-semibold mb-2">No Grid Loaded</h2>
-              <p className="text-muted-foreground">Import a JSON file to get started</p>
+              <p className="text-muted-foreground">Import a JSON file or Load a Current Map to get started</p>
             </div>
           </div>
         ) : (
