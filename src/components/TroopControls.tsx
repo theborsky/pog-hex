@@ -27,6 +27,9 @@ export const TroopControls = ({ onAddTroop }: TroopControlsProps) => {
     <Card>
       <CardHeader>
         <CardTitle className="text-sm">Add Unit</CardTitle>
+        <p className="text-xs text-muted-foreground mt-1">
+          Click any tile to add an unassigned unit
+        </p>
       </CardHeader>
       <CardContent className="space-y-3">
         <div className="space-y-2">
