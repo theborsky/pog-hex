@@ -1,4 +1,5 @@
 import { HexGrid } from "@/types/hex";
+import zarzaraDesertData from "./zarzara-desert.json";
 
 export interface PredefinedMap {
   name: string;
@@ -6,6 +7,10 @@ export interface PredefinedMap {
 }
 
 export const PREDEFINED_MAPS: PredefinedMap[] = [
+  {
+    name: "Zarzara Desert",
+    data: zarzaraDesertData as HexGrid
+  },
   {
     name: "Desolation Pass",
     data: {
