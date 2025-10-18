@@ -52,7 +52,9 @@ const Index = () => {
       setSelectedTile(pos);
       setSelectedTroopId(null);
     } else {
-      // In troops mode, find troop at this position
+      // In troops mode, set selected tile for visual feedback
+      setSelectedTile(pos);
+      // Find troop at this position
       const troopAtPos = troops.find(t => t.Pos.x === pos.x && t.Pos.y === pos.y);
       if (troopAtPos) {
         setSelectedTroopId(troopAtPos.EntityId);
@@ -60,7 +62,6 @@ const Index = () => {
         // No troop at this position, create a new one
         handleAddTroop(pos.x, pos.y);
       }
-      setSelectedTile(null);
     }
   };
 
