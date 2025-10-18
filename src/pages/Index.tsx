@@ -48,7 +48,20 @@ const Index = () => {
   };
 
   const handleTileClick = (pos: Position) => {
-    setSelectedTile(pos);
+    if (viewMode === "tiles") {
+      setSelectedTile(pos);
+      setSelectedTroopId(null);
+    } else {
+      // In troops mode, find troop at this position
+      const troopAtPos = troops.find(t => t.Pos.x === pos.x && t.Pos.y === pos.y);
+      if (troopAtPos) {
+        setSelectedTroopId(troopAtPos.EntityId);
+      } else {
+        // No troop at this position, create a new one
+        handleAddTroop(pos.x, pos.y);
+      }
+      setSelectedTile(null);
+    }
   };
 
   const handleUpdateTile = (updates: Partial<HexTile>) => {

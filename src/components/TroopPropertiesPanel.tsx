@@ -2,8 +2,10 @@ import { Troop } from "@/types/hex";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { TROOP_TYPE_OPTIONS } from "@/utils/troopTypes";
 
 interface TroopPropertiesPanelProps {
   troop: Troop | null;
@@ -46,13 +48,21 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: Tr
         </div>
         <div className="space-y-2">
           <Label htmlFor="type" className="text-xs">Type</Label>
-          <Input
-            id="type"
-            type="number"
-            value={troop.Type}
-            onChange={(e) => onUpdateTroop({ Type: parseInt(e.target.value) })}
-            className="h-8"
-          />
+          <Select
+            value={troop.Type.toString()}
+            onValueChange={(value) => onUpdateTroop({ Type: parseInt(value) })}
+          >
+            <SelectTrigger className="h-8">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {TROOP_TYPE_OPTIONS.map((option) => (
+                <SelectItem key={option.value} value={option.value.toString()}>
+                  {option.label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
         <div className="space-y-2">
           <Label htmlFor="owner" className="text-xs">Owner</Label>
