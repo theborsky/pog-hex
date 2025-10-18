@@ -1,0 +1,77 @@
+import { Troop } from "@/types/hex";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Trash2 } from "lucide-react";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { getTroopTypeName } from "@/utils/troopTypes";
+
+interface TroopListProps {
+  troops: Troop[];
+  selectedTroopId: number | null;
+  onSelectTroop: (troopId: number) => void;
+  onRemoveTroop: (troopId: number) => void;
+}
+
+export const TroopList = ({ troops, selectedTroopId, onSelectTroop, onRemoveTroop }: TroopListProps) => {
+  if (troops.length === 0) {
+    return (
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-sm">Troop List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">No troops added yet</p>
+        </CardContent>
+      </Card>
+    );
+  }
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="text-sm">Troop List ({troops.length})</CardTitle>
+      </CardHeader>
+      <CardContent className="p-0">
+        <ScrollArea className="h-[200px]">
+          <div className="space-y-1 p-4">
+            {troops.map((troop) => (
+              <div
+                key={troop.EntityId}
+                className={`flex items-center justify-between p-2 rounded-md cursor-pointer transition-colors ${
+                  selectedTroopId === troop.EntityId
+                    ? "bg-primary text-primary-foreground"
+                    : "hover:bg-accent"
+                }`}
+                onClick={() => onSelectTroop(troop.EntityId)}
+              >
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">
+                    {getTroopTypeName(troop.Type)}
+                  </p>
+                  <p className={`text-xs ${
+                    selectedTroopId === troop.EntityId
+                      ? "text-primary-foreground/70"
+                      : "text-muted-foreground"
+                  }`}>
+                    Pos: ({troop.Pos.x}, {troop.Pos.y}) • P{troop.Owner}
+                  </p>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-8 w-8 flex-shrink-0 ml-2"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onRemoveTroop(troop.EntityId);
+                  }}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </div>
+            ))}
+          </div>
+        </ScrollArea>
+      </CardContent>
+    </Card>
+  );
+};

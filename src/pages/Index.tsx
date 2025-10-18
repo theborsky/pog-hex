@@ -5,6 +5,7 @@ import { HexGrid } from "@/components/HexGrid";
 import { TilePropertiesPanel } from "@/components/TilePropertiesPanel";
 import { TroopPropertiesPanel } from "@/components/TroopPropertiesPanel";
 import { TroopControls } from "@/components/TroopControls";
+import { TroopList } from "@/components/TroopList";
 import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -366,6 +367,21 @@ const Index = () => {
             </TabsContent>
             <TabsContent value="troops" className="space-y-4 mt-4">
               <TroopControls onAddTroop={handleAddTroop} />
+              <TroopList
+                troops={troops}
+                selectedTroopId={selectedTroopId}
+                onSelectTroop={setSelectedTroopId}
+                onRemoveTroop={(troopId) => {
+                  setTroops(troops.filter((t) => t.EntityId !== troopId));
+                  const troop = troops.find(t => t.EntityId === troopId);
+                  if (troop) {
+                    toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                  }
+                  if (selectedTroopId === troopId) {
+                    setSelectedTroopId(null);
+                  }
+                }}
+              />
               <TroopPropertiesPanel 
                 troop={selectedTroopData}
                 onUpdateTroop={handleUpdateTroop}
