@@ -381,7 +381,9 @@ const Index = () => {
       <aside className="w-96 border-r border-border bg-slate-950 text-slate-50 overflow-y-auto flex-shrink-0">
         <div className="p-4 border-b border-slate-800">
           <div className="flex items-center justify-center mb-3">
-            <img src={pogLogo} alt="POG Logo" className="h-16 w-auto" />
+            <a href="https://priceofglorygame.com/" target="_blank" rel="noopener noreferrer">
+              <img src={pogLogo} alt="POG Logo" className="h-16 w-auto cursor-pointer hover:opacity-80 transition-opacity" />
+            </a>
           </div>
           <h1 className="text-2xl font-bold text-slate-50 text-center">Battlefield Editor</h1>
           <p className="text-sm text-slate-400 mt-1 text-center">Customize layout and troops</p>
