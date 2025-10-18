@@ -12,26 +12,6 @@ export interface PredefinedMap {
 
 export const PREDEFINED_MAPS: PredefinedMap[] = [
   {
-    name: "Sandbox Tutorial",
-    data: sandboxTutorialData as HexGrid
-  },
-  {
-    name: "Mt.Bosk",
-    data: mtBoskData as HexGrid
-  },
-  {
-    name: "Salt Lagoon",
-    data: saltLagoonData as HexGrid
-  },
-  {
-    name: "Wild Steppes",
-    data: wildSteppesData as HexGrid
-  },
-  {
-    name: "Zarzara Desert",
-    data: zarzaraDesertData as HexGrid
-  },
-  {
     name: "Desolation Pass",
     data: {
       "Tiles": [
@@ -879,5 +859,25 @@ export const PREDEFINED_MAPS: PredefinedMap[] = [
         }
       ]
     }
+  },
+  {
+    name: "Mt.Bosk",
+    data: mtBoskData as HexGrid
+  },
+  {
+    name: "Salt Lagoon",
+    data: saltLagoonData as HexGrid
+  },
+  {
+    name: "Sandbox Tutorial",
+    data: sandboxTutorialData as HexGrid
+  },
+  {
+    name: "Wild Steppes",
+    data: wildSteppesData as HexGrid
+  },
+  {
+    name: "Zarzara Desert",
+    data: zarzaraDesertData as HexGrid
   }
 ];
