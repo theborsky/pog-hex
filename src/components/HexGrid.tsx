@@ -1,7 +1,8 @@
 import { HexTile as HexTileType, Position, Troop } from "@/types/hex";
 import { HexTile } from "./HexTile";
-import { hexToPixel } from "@/utils/hexUtils";
+import { hexToPixel, getBaseCoveredTiles } from "@/utils/hexUtils";
 import { useMemo } from "react";
+import { TROOP_TYPES } from "@/utils/troopTypes";
 
 interface HexGridProps {
   tiles: HexTileType[];
@@ -25,6 +26,20 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
     return { minX, maxX, minY, maxY };
   }, [tiles]);
 
+  // Calculate which tiles are covered by bases
+  const coveredByBaseTiles = useMemo(() => {
+    const covered = new Set<string>();
+    troops.forEach((troop) => {
+      if (troop.Type === TROOP_TYPES.Base) {
+        const coveredTiles = getBaseCoveredTiles(troop.Pos);
+        coveredTiles.forEach((pos) => {
+          covered.add(`${pos.x},${pos.y}`);
+        });
+      }
+    });
+    return covered;
+  }, [troops]);
+
   const padding = 60;
   const viewBoxWidth = bounds.maxX - bounds.minX + padding * 2;
   const viewBoxHeight = bounds.maxY - bounds.minY + padding * 2;
@@ -42,6 +57,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
           const troopAtTile = troops.find(
             (t) => t.Pos.x === tile.Pos.x && t.Pos.y === tile.Pos.y
           );
+          const isCoveredByBase = coveredByBaseTiles.has(`${tile.Pos.x},${tile.Pos.y}`);
           return (
             <HexTile
               key={`${tile.Pos.x},${tile.Pos.y}`}
@@ -52,6 +68,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops }: HexGridPro
                 tile.Pos.x === selectedTile.x &&
                 tile.Pos.y === selectedTile.y
               }
+              isCoveredByBase={isCoveredByBase}
               onClick={() => onTileClick(tile.Pos)}
             />
           );

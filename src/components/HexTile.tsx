@@ -7,9 +7,10 @@ interface HexTileProps {
   isSelected: boolean;
   onClick: () => void;
   troop?: Troop;
+  isCoveredByBase?: boolean;
 }
 
-export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
+export const HexTile = ({ tile, isSelected, onClick, troop, isCoveredByBase }: HexTileProps) => {
   const pixel = hexToPixel(tile.Pos);
   const hexPath = getHexPath();
 
@@ -58,6 +59,16 @@ export const HexTile = ({ tile, isSelected, onClick, troop }: HexTileProps) => {
           fill="none"
           stroke={getTroopStrokeColor()!}
           strokeWidth={1.5}
+        />
+      )}
+      {isCoveredByBase && (
+        <path
+          d={hexPath}
+          fill="none"
+          stroke="#9333ea"
+          strokeWidth={2}
+          strokeDasharray="4 2"
+          opacity={0.6}
         />
       )}
       {troop && troop.Type !== 0 && (

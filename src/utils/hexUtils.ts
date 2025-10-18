@@ -33,6 +33,21 @@ export function getHexPath(size: number = HEX_SIZE): string {
   return points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x},${p.y}`).join(' ') + ' Z';
 }
 
+/**
+ * Get the positions of tiles covered by a base at the given position
+ * For even-q layout, bases cover 3 tiles "below" them based on column parity
+ */
+export function getBaseCoveredTiles(pos: Position): Position[] {
+  const isEvenColumn = pos.x % 2 === 0;
+  const yOffset = isEvenColumn ? -1 : 1;
+  
+  return [
+    { x: pos.x - 1, y: pos.y + yOffset },
+    { x: pos.x, y: pos.y + yOffset },
+    { x: pos.x + 1, y: pos.y + yOffset },
+  ];
+}
+
 export const hexConstants = {
   HEX_SIZE,
   HEX_WIDTH,
