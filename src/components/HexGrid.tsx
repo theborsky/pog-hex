@@ -47,14 +47,24 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: 
   const viewBoxX = bounds.minX - padding;
   const viewBoxY = bounds.minY - padding;
 
-  // Sort tiles so selected tile renders last (on top)
+  // Sort tiles: special tiles first (so their outlines show), then selected tile last (on top)
   const sortedTiles = useMemo(() => {
-    if (!selectedTile) return tiles;
     return [...tiles].sort((a, b) => {
-      const aIsSelected = a.Pos.x === selectedTile.x && a.Pos.y === selectedTile.y;
-      const bIsSelected = b.Pos.x === selectedTile.x && b.Pos.y === selectedTile.y;
+      const aIsSelected = selectedTile && a.Pos.x === selectedTile.x && a.Pos.y === selectedTile.y;
+      const bIsSelected = selectedTile && b.Pos.x === selectedTile.x && b.Pos.y === selectedTile.y;
+      
+      // Selected tile always goes last (renders on top)
       if (aIsSelected) return 1;
       if (bIsSelected) return -1;
+      
+      // Check if tile has any special property (not just walkable)
+      const aHasSpecial = a.IsHole || a.IsBonus || a.IsObstacle || a.IsSpawnP1 || a.IsSpawnP2;
+      const bHasSpecial = b.IsHole || b.IsBonus || b.IsObstacle || b.IsSpawnP1 || b.IsSpawnP2;
+      
+      // Special tiles render after normal tiles (on top)
+      if (aHasSpecial && !bHasSpecial) return 1;
+      if (!aHasSpecial && bHasSpecial) return -1;
+      
       return 0;
     });
   }, [tiles, selectedTile]);
