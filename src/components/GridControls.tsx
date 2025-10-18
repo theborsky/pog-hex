@@ -38,7 +38,7 @@ export const GridControls = ({
 
   return (
     <div className="space-y-4">
-      <Card className="bg-[#999] border-slate-700">
+      <Card>
         <CardHeader>
           <CardTitle className="text-lg">Import/Export</CardTitle>
         </CardHeader>
@@ -64,7 +64,7 @@ export const GridControls = ({
       </Card>
 
       <Collapsible open={columnsOpen} onOpenChange={setColumnsOpen}>
-        <Card className="bg-[#999] border-slate-700">
+        <Card>
           <CollapsibleTrigger className="w-full">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
               <CardTitle className="text-lg">Manage Columns</CardTitle>
@@ -108,7 +108,7 @@ export const GridControls = ({
       </Collapsible>
 
       <Collapsible open={rowsOpen} onOpenChange={setRowsOpen}>
-        <Card className="bg-[#999] border-slate-700">
+        <Card>
           <CollapsibleTrigger className="w-full">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4">
               <CardTitle className="text-lg">Manage Rows</CardTitle>
