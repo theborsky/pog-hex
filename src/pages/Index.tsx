@@ -1,4 +1,5 @@
 import { useState } from "react";
+import pogLogo from "@/assets/pog-logo.webp";
 import { HexGrid as HexGridType, HexTile, Position, Troop } from "@/types/hex";
 import { HexGrid } from "@/components/HexGrid";
 import { TilePropertiesPanel } from "@/components/TilePropertiesPanel";
@@ -332,8 +333,11 @@ const Index = () => {
       {/* Sidebar */}
       <aside className="w-80 border-r border-border bg-card overflow-y-auto flex-shrink-0">
         <div className="p-4 border-b border-border">
-          <h1 className="text-2xl font-bold text-foreground">POG Map Editor</h1>
-          <p className="text-sm text-muted-foreground mt-1">Even-Q vertical layout</p>
+          <div className="flex items-center justify-center mb-3">
+            <img src={pogLogo} alt="POG Logo" className="h-16 w-auto" />
+          </div>
+          <h1 className="text-2xl font-bold text-foreground text-center">POG Map Editor</h1>
+          <p className="text-sm text-muted-foreground mt-1 text-center">Even-Q vertical layout</p>
         </div>
         <div className="p-4 space-y-4">
           <GridControls
