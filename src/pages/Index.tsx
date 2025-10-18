@@ -7,6 +7,10 @@ import { TroopControls } from "@/components/TroopControls";
 import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -15,6 +19,8 @@ const Index = () => {
   const [selectedTile, setSelectedTile] = useState<Position | null>(null);
   const [selectedTroopId, setSelectedTroopId] = useState<number | null>(null);
   const [viewMode, setViewMode] = useState<"tiles" | "troops">("tiles");
+  const [showExportDialog, setShowExportDialog] = useState(false);
+  const [exportFilename, setExportFilename] = useState("hex-grid");
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
@@ -35,15 +41,20 @@ const Index = () => {
   };
 
   const handleExport = () => {
+    setShowExportDialog(true);
+  };
+
+  const handleConfirmExport = () => {
     const gridData: HexGridType = { Tiles: tiles, Troops: troops };
     const json = JSON.stringify(gridData, null, 4);
     const blob = new Blob([json], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "hex-grid.json";
+    a.download = `${exportFilename}.json`;
     a.click();
     URL.revokeObjectURL(url);
+    setShowExportDialog(false);
     toast.success("Grid exported successfully");
   };
 
@@ -285,6 +296,38 @@ const Index = () => {
     : null;
 
   return (
+    <>
+      <Dialog open={showExportDialog} onOpenChange={setShowExportDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Export Grid</DialogTitle>
+            <DialogDescription>
+              Enter a name for your exported file
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <div className="grid gap-2">
+              <Label htmlFor="filename">Filename</Label>
+              <div className="flex items-center gap-2">
+                <Input
+                  id="filename"
+                  value={exportFilename}
+                  onChange={(e) => setExportFilename(e.target.value)}
+                  placeholder="hex-grid"
+                  className="flex-1"
+                />
+                <span className="text-sm text-muted-foreground">.json</span>
+              </div>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowExportDialog(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleConfirmExport}>Export</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
       <aside className="w-80 border-r border-border bg-card overflow-y-auto flex-shrink-0">
@@ -343,6 +386,7 @@ const Index = () => {
         )}
       </main>
     </div>
+    </>
   );
 };
 
