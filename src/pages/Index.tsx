@@ -109,6 +109,11 @@ const Index = () => {
       updates.IsWalkable = true;
     }
 
+    // If Hole is being set to true, automatically set Walkable to false
+    if (updates.IsHole === true) {
+      updates.IsWalkable = false;
+    }
+
     setTiles((prevTiles) =>
       prevTiles.map((tile) =>
         tile.Pos.x === selectedTile.x && tile.Pos.y === selectedTile.y
