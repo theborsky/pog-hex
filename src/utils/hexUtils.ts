@@ -1,10 +1,9 @@
 import { Position, PixelCoord } from "@/types/hex";
 
 // Hex geometry constants for flat-top hexagons
-const HEX_SIZE = 30; // radius
-const HEX_WIDTH = Math.sqrt(3) * HEX_SIZE; // horizontal spacing
-const HEX_HEIGHT = 2 * HEX_SIZE; // full height
-const VERTICAL_SPACING = HEX_HEIGHT * 0.75; // 1.5 * HEX_SIZE - vertical distance between rows
+const HEX_SIZE = 30; // distance from center to vertex
+const HEX_WIDTH = Math.sqrt(3) * HEX_SIZE; // horizontal spacing between columns
+const VERTICAL_SPACING = 1.5 * HEX_SIZE; // vertical distance between rows
 
 /**
  * Convert even-q hex coordinates to pixel coordinates
@@ -13,8 +12,8 @@ const VERTICAL_SPACING = HEX_HEIGHT * 0.75; // 1.5 * HEX_SIZE - vertical distanc
  */
 export function hexToPixel(pos: Position): PixelCoord {
   const x = pos.x * HEX_WIDTH;
-  // Even columns offset by half the vertical spacing
-  const y = -pos.y * VERTICAL_SPACING - (pos.x % 2 === 0 ? VERTICAL_SPACING * 0.5 : 0);
+  // Even columns offset by 0.75 * HEX_SIZE
+  const y = -pos.y * VERTICAL_SPACING - (pos.x % 2 === 0 ? 0.75 * HEX_SIZE : 0);
   return { x, y };
 }
 
@@ -37,5 +36,5 @@ export function getHexPath(size: number = HEX_SIZE): string {
 export const hexConstants = {
   HEX_SIZE,
   HEX_WIDTH,
-  HEX_HEIGHT,
+  VERTICAL_SPACING,
 };
