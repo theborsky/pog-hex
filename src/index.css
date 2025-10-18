@@ -45,12 +45,12 @@ All colors MUST be HSL.
     --tile-hole-stroke: 240 10% 10%;
     --tile-bonus: 45 93% 58%;
     --tile-bonus-stroke: 45 93% 38%;
-    --tile-obstacle: 0 84% 60%;
-    --tile-obstacle-stroke: 0 84% 40%;
+    --tile-obstacle: 25 75% 40%;
+    --tile-obstacle-stroke: 25 75% 25%;
     --tile-spawn-p1: 217 91% 60%;
     --tile-spawn-p1-stroke: 217 91% 40%;
-    --tile-spawn-p2: 142 76% 45%;
-    --tile-spawn-p2-stroke: 142 76% 30%;
+    --tile-spawn-p2: 0 85% 55%;
+    --tile-spawn-p2-stroke: 0 85% 40%;
     --tile-selected: 280 80% 70%;
     --tile-selected-stroke: 280 80% 50%;
 
@@ -109,12 +109,12 @@ All colors MUST be HSL.
     --tile-hole-stroke: 240 10% 4%;
     --tile-bonus: 45 93% 48%;
     --tile-bonus-stroke: 45 93% 35%;
-    --tile-obstacle: 0 84% 50%;
-    --tile-obstacle-stroke: 0 84% 35%;
+    --tile-obstacle: 25 75% 35%;
+    --tile-obstacle-stroke: 25 75% 22%;
     --tile-spawn-p1: 217 91% 60%;
     --tile-spawn-p1-stroke: 217 91% 45%;
-    --tile-spawn-p2: 142 76% 45%;
-    --tile-spawn-p2-stroke: 142 76% 30%;
+    --tile-spawn-p2: 0 85% 50%;
+    --tile-spawn-p2-stroke: 0 85% 35%;
     --tile-selected: 280 80% 60%;
     --tile-selected-stroke: 280 80% 45%;
     --sidebar-background: 240 5.9% 10%;
