@@ -336,7 +336,7 @@ const Index = () => {
           <div className="flex items-center justify-center mb-3">
             <img src={pogLogo} alt="POG Logo" className="h-16 w-auto" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-50 text-center">POG Map Editor</h1>
+          <h1 className="text-2xl font-bold text-slate-50 text-center">Battlefield Editor</h1>
           <p className="text-sm text-slate-400 mt-1 text-center">Even-Q vertical layout</p>
         </div>
         <div className="p-4 space-y-4">
