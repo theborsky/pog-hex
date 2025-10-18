@@ -29,7 +29,7 @@ export const GridControls = ({
 }: GridControlsProps) => {
   const [columnX, setColumnX] = useState("0");
   const [rowY, setRowY] = useState("0");
-  const [importExportOpen, setImportExportOpen] = useState(true);
+  const [importExportOpen, setImportExportOpen] = useState(false);
   const [columnsOpen, setColumnsOpen] = useState(false);
   const [rowsOpen, setRowsOpen] = useState(false);
 
