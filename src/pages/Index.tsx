@@ -8,6 +8,8 @@ import { TroopControls } from "@/components/TroopControls";
 import { TroopList } from "@/components/TroopList";
 import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
+import { MapSelector } from "@/components/MapSelector";
+import { PREDEFINED_MAPS } from "@/data/maps";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -58,6 +60,17 @@ const Index = () => {
     URL.revokeObjectURL(url);
     setShowExportDialog(false);
     toast.success("Grid exported successfully");
+  };
+
+  const handleLoadPredefinedMap = (mapName: string) => {
+    const map = PREDEFINED_MAPS.find(m => m.name === mapName);
+    if (map) {
+      setTiles(map.data.Tiles);
+      setTroops(map.data.Troops || []);
+      setSelectedTile(null);
+      setSelectedTroopId(null);
+      toast.success(`Loaded ${mapName}`);
+    }
   };
 
   const handleTileClick = (pos: Position) => {
@@ -343,6 +356,7 @@ const Index = () => {
           <p className="text-sm text-slate-400 mt-1 text-center">Even-Q vertical layout</p>
         </div>
         <div className="p-4 space-y-4">
+          <MapSelector onLoadMap={handleLoadPredefinedMap} />
           <GridControls
             onImport={handleImport}
             onExport={handleExport}
