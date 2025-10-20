@@ -454,7 +454,7 @@ const Index = () => {
                 className="w-full text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted-foreground disabled:hover:bg-transparent"
                 disabled={!selectedTile}
               >
-                Clear Selection
+                Clear Selected Tile
               </Button>
               <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
                 <TabsList className="grid w-full grid-cols-2">
