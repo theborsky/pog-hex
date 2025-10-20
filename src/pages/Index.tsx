@@ -461,15 +461,14 @@ const Index = () => {
                     onAddTileAbove={handleAddTileAbove}
                     onAddTileBelow={handleAddTileBelow}
                   />
-                  {selectedTile && (
-                    <Button 
-                      onClick={() => setSelectedTile(null)} 
-                      variant="outline" 
-                      className="w-full"
-                    >
-                      Clear Selection
-                    </Button>
-                  )}
+                  <Button 
+                    onClick={() => setSelectedTile(null)} 
+                    variant="outline" 
+                    className="w-full"
+                    disabled={!selectedTile}
+                  >
+                    Clear Selection
+                  </Button>
                   <Legend />
                 </TabsContent>
                 <TabsContent value="troops" className="space-y-4 mt-4">
