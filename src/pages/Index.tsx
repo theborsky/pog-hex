@@ -451,7 +451,7 @@ const Index = () => {
               <Button 
                 onClick={() => setSelectedTile(null)} 
                 variant="outline" 
-                className="w-full text-primary hover:text-primary disabled:text-muted-foreground"
+                className="w-full text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted-foreground disabled:hover:bg-transparent"
                 disabled={!selectedTile}
               >
                 Clear Selection
