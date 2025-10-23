@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import pogLogo from "@/assets/pog-logo.webp";
 import { HexGrid as HexGridType, HexTile, Position, Troop } from "@/types/hex";
@@ -30,38 +30,6 @@ const Index = () => {
   const [loadSaveOpen, setLoadSaveOpen] = useState(true);
   const [editGridOpen, setEditGridOpen] = useState(false);
   const [editTilesOpen, setEditTilesOpen] = useState(true);
-
-  // Send ready signal when editor loads
-  useEffect(() => {
-    window.parent.postMessage({ type: 'EDITOR_READY' }, '*');
-  }, []);
-
-  // Listen for map data from Quest Builder
-  useEffect(() => {
-    const handleMessage = (event: MessageEvent) => {
-      if (event.data.type === 'LOAD_MAP') {
-        // Load the map data into editor
-        const mapData = event.data.data as HexGridType;
-        setTiles(mapData.Tiles);
-        setTroops(mapData.Troops || []);
-        setSelectedTile(null);
-        setSelectedTroopId(null);
-        toast.success('Map loaded from Quest Builder');
-      }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  // Send updates back to Quest Builder when map changes
-  useEffect(() => {
-    if (tiles.length > 0) {
-      window.parent.postMessage({
-        type: 'MAP_UPDATED',
-        data: { Tiles: tiles, Troops: troops }
-      }, '*');
-    }
-  }, [tiles, troops]);
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
