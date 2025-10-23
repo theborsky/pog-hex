@@ -418,13 +418,6 @@ const Index = () => {
                 showImportExportOnly
               />
               <Button 
-                onClick={handleSendToQuestBuilder}
-                variant="default"
-                className="w-full"
-              >
-                Send to Quest Builder
-              </Button>
-              <Button 
                 onClick={handleClearMap} 
                 variant="destructive" 
                 className="w-full"
@@ -517,7 +510,14 @@ const Index = () => {
       </aside>
 
       {/* Main Canvas */}
-      <main className="flex-1 overflow-hidden">
+      <main className="flex-1 overflow-hidden relative">
+        <Button 
+          onClick={handleSendToQuestBuilder}
+          variant="default"
+          className="absolute top-4 right-4 z-10"
+        >
+          Send to Quest Builder
+        </Button>
         {tiles.length === 0 ? (
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
