@@ -86,6 +86,15 @@ const Index = () => {
     toast.success("Map cleared");
   };
 
+  const handleSendToQuestBuilder = () => {
+    window.parent.postMessage({
+      type: 'MAP_DATA',
+      tiles: tiles,
+      troops: troops
+    }, 'https://42d94a88-59c2-402b-9d83-5d45778d9b3a.lovableproject.com');
+    toast.success("Map sent to Quest Builder");
+  };
+
   const handleTileClick = (pos: Position) => {
     if (viewMode === "tiles") {
       setSelectedTile(pos);
@@ -408,6 +417,13 @@ const Index = () => {
                 onRemoveRow={handleRemoveRow}
                 showImportExportOnly
               />
+              <Button 
+                onClick={handleSendToQuestBuilder}
+                variant="default"
+                className="w-full"
+              >
+                Send to Quest Builder
+              </Button>
               <Button 
                 onClick={handleClearMap} 
                 variant="destructive" 
