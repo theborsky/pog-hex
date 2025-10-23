@@ -87,11 +87,14 @@ const Index = () => {
   };
 
   const handleSendToQuestBuilder = () => {
-    window.parent.postMessage({
+    const mapData = {
       type: 'MAP_DATA',
       tiles: tiles,
       troops: troops
-    }, 'https://42d94a88-59c2-402b-9d83-5d45778d9b3a.lovableproject.com');
+    };
+    
+    // Send to parent window (Quest Forge)
+    window.parent.postMessage(mapData, '*');
     toast.success("Map sent to Quest Builder");
   };
 
