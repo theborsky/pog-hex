@@ -50,7 +50,19 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: Tr
           <Label htmlFor="type" className="text-xs">Type</Label>
           <Select
             value={troop.Type.toString()}
-            onValueChange={(value) => onUpdateTroop({ Type: parseInt(value) })}
+            onValueChange={(value) => {
+              const newType = parseInt(value);
+              const updates: Partial<Troop> = { Type: newType };
+              
+              // TrainingKnight is type 12
+              if (newType === 12) {
+                updates.OverrideFactionPlayer2 = 4;
+              } else {
+                updates.OverrideFactionPlayer2 = undefined;
+              }
+              
+              onUpdateTroop(updates);
+            }}
           >
             <SelectTrigger className="h-8">
               <SelectValue />
