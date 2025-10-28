@@ -18,7 +18,6 @@ export interface Troop {
   Pos: Position;
   Type: number;
   Owner: number;
-  OverrideFactionPlayer2?: number;
 }
 
 export interface HexGrid {
