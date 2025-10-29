@@ -509,16 +509,34 @@ const Index = () => {
           setSelectedTroopId(null);
         }}
       >
-        <Button 
-          onClick={(e) => {
-            e.stopPropagation();
-            handleSendToQuestBuilder();
-          }}
-          variant="default"
-          className="absolute top-4 right-4 z-10"
-        >
-          Send to Quest Builder
-        </Button>
+        {/* Top Controls Bar */}
+        <div className="absolute top-4 left-0 right-0 z-10 flex items-center justify-center px-4">
+          <div className="flex items-center gap-4 w-full max-w-4xl">
+            <div className="flex-1" />
+            <Tabs 
+              value={viewMode} 
+              onValueChange={(v) => setViewMode(v as "tiles" | "troops")}
+              className="w-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <TabsList>
+                <TabsTrigger value="tiles">Tiles</TabsTrigger>
+                <TabsTrigger value="troops">Troops</TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <div className="flex-1 flex justify-end">
+              <Button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleSendToQuestBuilder();
+                }}
+                variant="default"
+              >
+                Send to Quest Builder
+              </Button>
+            </div>
+          </div>
+        </div>
         
         {/* Floating Tile Properties Panel */}
         {selectedTileData && viewMode === "tiles" && (() => {
