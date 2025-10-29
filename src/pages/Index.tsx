@@ -538,6 +538,7 @@ const Index = () => {
                 onRemoveTile={handleRemoveTile}
                 onAddTileAbove={handleAddTileAbove}
                 onAddTileBelow={handleAddTileBelow}
+                onClose={() => setSelectedTile(null)}
               />
             </div>
           );
@@ -559,6 +560,7 @@ const Index = () => {
                 troop={selectedTroopData}
                 onUpdateTroop={handleUpdateTroop}
                 onRemoveTroop={handleRemoveTroop}
+                onClose={() => setSelectedTroopId(null)}
               />
             </div>
           );

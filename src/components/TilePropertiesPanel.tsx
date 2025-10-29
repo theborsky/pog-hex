@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-import { Trash2, ArrowUp, ArrowDown } from "lucide-react";
+import { Trash2, ArrowUp, ArrowDown, X } from "lucide-react";
 
 interface TilePropertiesPanelProps {
   tile: HexTile | null;
@@ -11,9 +11,10 @@ interface TilePropertiesPanelProps {
   onRemoveTile: () => void;
   onAddTileAbove: () => void;
   onAddTileBelow: () => void;
+  onClose?: () => void;
 }
 
-export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTileAbove, onAddTileBelow }: TilePropertiesPanelProps) => {
+export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTileAbove, onAddTileBelow, onClose }: TilePropertiesPanelProps) => {
   if (!tile) {
     return (
       <Card>
@@ -39,10 +40,24 @@ export const TilePropertiesPanel = ({ tile, onUpdateTile, onRemoveTile, onAddTil
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Tile Properties</CardTitle>
-        <p className="text-sm text-muted-foreground">
-          Position: ({tile.Pos.x}, {tile.Pos.y})
-        </p>
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="text-lg">Tile Properties</CardTitle>
+            <p className="text-sm text-muted-foreground">
+              Position: ({tile.Pos.x}, {tile.Pos.y})
+            </p>
+          </div>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 -mt-1"
+              onClick={onClose}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         {properties.map(({ key, label, color }) => (

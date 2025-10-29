@@ -4,16 +4,17 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { Trash2, X } from "lucide-react";
 import { TROOP_TYPE_OPTIONS } from "@/utils/troopTypes";
 
 interface TroopPropertiesPanelProps {
   troop: Troop | null;
   onUpdateTroop: (updates: Partial<Troop>) => void;
   onRemoveTroop: () => void;
+  onClose?: () => void;
 }
 
-export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: TroopPropertiesPanelProps) => {
+export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop, onClose }: TroopPropertiesPanelProps) => {
   if (!troop) {
     return (
       <Card>
@@ -30,10 +31,24 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop }: Tr
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-sm">Troop Properties</CardTitle>
-        <p className="text-xs text-muted-foreground">
-          Position: ({troop.Pos.x}, {troop.Pos.y})
-        </p>
+        <div className="flex items-start justify-between">
+          <div>
+            <CardTitle className="text-sm">Troop Properties</CardTitle>
+            <p className="text-xs text-muted-foreground">
+              Position: ({troop.Pos.x}, {troop.Pos.y})
+            </p>
+          </div>
+          {onClose && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 -mt-1"
+              onClick={onClose}
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          )}
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="space-y-2">
