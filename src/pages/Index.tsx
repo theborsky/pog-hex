@@ -475,13 +475,6 @@ const Index = () => {
                   <TabsTrigger value="troops">Troops</TabsTrigger>
                 </TabsList>
                 <TabsContent value="tiles" className="space-y-4 mt-4">
-                  <TilePropertiesPanel 
-                    tile={selectedTileData} 
-                    onUpdateTile={handleUpdateTile} 
-                    onRemoveTile={handleRemoveTile}
-                    onAddTileAbove={handleAddTileAbove}
-                    onAddTileBelow={handleAddTileBelow}
-                  />
                   <Legend />
                 </TabsContent>
                 <TabsContent value="troops" className="space-y-4 mt-4">
@@ -526,6 +519,29 @@ const Index = () => {
         >
           Send to Quest Builder
         </Button>
+        
+        {/* Floating Tile Properties Panel */}
+        {selectedTileData && viewMode === "tiles" && (() => {
+          const pixelPos = hexToPixel(selectedTileData.Pos);
+          return (
+            <div
+              className="absolute z-20 pointer-events-auto"
+              style={{
+                left: `calc(50% + ${pixelPos.x}px - 60px)`,
+                top: `calc(50% + ${pixelPos.y}px - 80px)`,
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <TilePropertiesPanel 
+                tile={selectedTileData} 
+                onUpdateTile={handleUpdateTile} 
+                onRemoveTile={handleRemoveTile}
+                onAddTileAbove={handleAddTileAbove}
+                onAddTileBelow={handleAddTileBelow}
+              />
+            </div>
+          );
+        })()}
         
         {/* Floating Troop Properties Panel */}
         {selectedTroopData && viewMode === "troops" && (() => {
