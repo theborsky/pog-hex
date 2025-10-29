@@ -504,7 +504,7 @@ const Index = () => {
       {/* Main Canvas */}
       <main 
         className="flex-1 overflow-hidden relative transition-colors duration-300"
-        style={{ backgroundColor: viewMode === "troops" ? "#999999" : undefined }}
+        style={{ backgroundColor: viewMode === "troops" ? "#cccccc" : undefined }}
         onClick={() => {
           setSelectedTile(null);
           setSelectedTroopId(null);
