@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { hexToPixel } from "@/utils/hexUtils";
 
 const Index = () => {
   const [tiles, setTiles] = useState<HexTile[]>([]);
@@ -500,11 +501,6 @@ const Index = () => {
                       }
                     }}
                   />
-                  <TroopPropertiesPanel 
-                    troop={selectedTroopData}
-                    onUpdateTroop={handleUpdateTroop}
-                    onRemoveTroop={handleRemoveTroop}
-                  />
                 </TabsContent>
               </Tabs>
             </CollapsibleContent>
@@ -521,6 +517,27 @@ const Index = () => {
         >
           Send to Quest Builder
         </Button>
+        
+        {/* Floating Troop Properties Panel */}
+        {selectedTroopData && viewMode === "troops" && (() => {
+          const pixelPos = hexToPixel(selectedTroopData.Pos);
+          return (
+            <div
+              className="absolute z-20 pointer-events-auto"
+              style={{
+                left: `calc(50% + ${pixelPos.x}px - 60px)`,
+                top: `calc(50% + ${pixelPos.y}px - 80px)`,
+              }}
+            >
+              <TroopPropertiesPanel 
+                troop={selectedTroopData}
+                onUpdateTroop={handleUpdateTroop}
+                onRemoveTroop={handleRemoveTroop}
+              />
+            </div>
+          );
+        })()}
+        
         {tiles.length === 0 ? (
           <div className="h-full flex items-center justify-center">
             <div className="text-center">
