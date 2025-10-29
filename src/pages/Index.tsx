@@ -509,9 +509,18 @@ const Index = () => {
       </aside>
 
       {/* Main Canvas */}
-      <main className="flex-1 overflow-hidden relative">
+      <main 
+        className="flex-1 overflow-hidden relative"
+        onClick={() => {
+          setSelectedTile(null);
+          setSelectedTroopId(null);
+        }}
+      >
         <Button 
-          onClick={handleSendToQuestBuilder}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleSendToQuestBuilder();
+          }}
           variant="default"
           className="absolute top-4 right-4 z-10"
         >
@@ -528,6 +537,7 @@ const Index = () => {
                 left: `calc(50% + ${pixelPos.x}px - 60px)`,
                 top: `calc(50% + ${pixelPos.y}px - 80px)`,
               }}
+              onClick={(e) => e.stopPropagation()}
             >
               <TroopPropertiesPanel 
                 troop={selectedTroopData}

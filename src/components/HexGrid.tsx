@@ -75,6 +75,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: 
         viewBox={`${viewBoxX} ${viewBoxY} ${viewBoxWidth} ${viewBoxHeight}`}
         className="max-w-full max-h-full"
         style={{ minHeight: "400px" }}
+        onClick={(e) => e.stopPropagation()}
       >
         {sortedTiles.map((tile) => {
           const troopAtTile = troops.find(
