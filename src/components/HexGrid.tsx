@@ -70,7 +70,7 @@ export const HexGrid = ({ tiles, selectedTile, onTileClick, troops, viewMode }: 
   }, [tiles, selectedTile]);
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-background overflow-auto">
+    <div className="w-full h-full flex items-center justify-center overflow-auto">
       <svg
         viewBox={`${viewBoxX} ${viewBoxY} ${viewBoxWidth} ${viewBoxHeight}`}
         className="max-w-full max-h-full"
