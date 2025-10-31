@@ -43,7 +43,13 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop, onCl
               variant="ghost"
               size="icon"
               className="h-6 w-6 -mt-1"
-              onClick={onClose}
+              onClick={() => {
+                if (troop.Type === 0) {
+                  onRemoveTroop();
+                } else {
+                  onClose();
+                }
+              }}
             >
               <X className="h-4 w-4" />
             </Button>
