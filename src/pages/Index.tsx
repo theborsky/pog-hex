@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import pogLogo from "@/assets/pog-logo.webp";
+import CodeEditor from '@uiw/react-textarea-code-editor';
 import { HexGrid as HexGridType, HexTile, Position, Troop } from "@/types/hex";
 import { HexGrid } from "@/components/HexGrid";
 import { TilePropertiesPanel } from "@/components/TilePropertiesPanel";
@@ -391,11 +392,21 @@ const Index = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <textarea
+            <CodeEditor
               value={jsonEditorContent}
+              language="json"
+              placeholder="JSON content"
               onChange={(e) => setJsonEditorContent(e.target.value)}
-              className="w-full h-[50vh] p-4 font-mono text-sm border rounded-md bg-background"
-              spellCheck={false}
+              padding={15}
+              style={{
+                fontSize: 12,
+                fontFamily: 'ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace',
+                height: '50vh',
+                overflow: 'auto',
+                borderRadius: '0.375rem',
+                border: '1px solid hsl(var(--border))',
+                backgroundColor: 'hsl(var(--background))',
+              }}
             />
           </div>
           <DialogFooter>
