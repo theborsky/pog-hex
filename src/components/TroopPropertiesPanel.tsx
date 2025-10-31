@@ -44,12 +44,9 @@ export const TroopPropertiesPanel = ({ troop, onUpdateTroop, onRemoveTroop, onCl
               size="icon"
               className="h-6 w-6 -mt-1"
               onClick={() => {
-                console.log("X button clicked, troop type:", troop.Type);
                 if (troop.Type === 0) {
-                  console.log("Removing troop with EntityId:", troop.EntityId);
                   onRemoveTroop();
                 } else {
-                  console.log("Just closing panel");
                   onClose();
                 }
               }}
