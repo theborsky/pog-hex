@@ -31,6 +31,8 @@ const Index = () => {
   const [loadSaveOpen, setLoadSaveOpen] = useState(true);
   const [editGridOpen, setEditGridOpen] = useState(false);
   const [editTilesOpen, setEditTilesOpen] = useState(true);
+  const [showJsonEditor, setShowJsonEditor] = useState(false);
+  const [jsonEditorContent, setJsonEditorContent] = useState("");
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
@@ -356,8 +358,55 @@ const Index = () => {
     ? troops.find((t) => t.EntityId === selectedTroopId) || null
     : null;
 
+  const handleOpenJsonEditor = () => {
+    const gridData: HexGridType = { Tiles: tiles, Troops: troops };
+    const json = JSON.stringify(gridData, null, 2);
+    setJsonEditorContent(json);
+    setShowJsonEditor(true);
+  };
+
+  const handleApplyJson = () => {
+    try {
+      const parsed = JSON.parse(jsonEditorContent) as HexGridType;
+      setTiles(parsed.Tiles);
+      setTroops(parsed.Troops || []);
+      setSelectedTile(null);
+      setSelectedTroopId(null);
+      setShowJsonEditor(false);
+      toast.success("JSON applied successfully");
+    } catch (error) {
+      toast.error("Invalid JSON format");
+      console.error(error);
+    }
+  };
+
   return (
     <>
+      <Dialog open={showJsonEditor} onOpenChange={setShowJsonEditor}>
+        <DialogContent className="max-w-4xl max-h-[80vh]">
+          <DialogHeader>
+            <DialogTitle>Edit JSON</DialogTitle>
+            <DialogDescription>
+              View and edit the raw JSON structure of your map
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <textarea
+              value={jsonEditorContent}
+              onChange={(e) => setJsonEditorContent(e.target.value)}
+              className="w-full h-[50vh] p-4 font-mono text-sm border rounded-md bg-background"
+              spellCheck={false}
+            />
+          </div>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setShowJsonEditor(false)}>
+              Cancel
+            </Button>
+            <Button onClick={handleApplyJson}>Apply Changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
       <Dialog open={showExportDialog} onOpenChange={setShowExportDialog}>
         <DialogContent>
           <DialogHeader>
@@ -525,16 +574,26 @@ const Index = () => {
           </Tabs>
         </div>
         
-        <Button 
-          onClick={(e) => {
-            e.stopPropagation();
-            handleSendToQuestBuilder();
-          }}
-          variant="default"
-          className="absolute top-4 right-4 z-10"
-        >
-          Send to Quest Builder
-        </Button>
+        <div className="absolute top-4 right-4 z-10 flex gap-2">
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleOpenJsonEditor();
+            }}
+            variant="outline"
+          >
+            Edit JSON
+          </Button>
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleSendToQuestBuilder();
+            }}
+            variant="default"
+          >
+            Send to Quest Builder
+          </Button>
+        </div>
         
         {/* Floating Tile Properties Panel */}
         {selectedTileData && viewMode === "tiles" && (() => {
