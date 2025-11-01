@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import pogLogo from "@/assets/pog-logo.webp";
 import CodeEditor from '@uiw/react-textarea-code-editor';
@@ -34,6 +34,30 @@ const Index = () => {
   const [editTilesOpen, setEditTilesOpen] = useState(true);
   const [showJsonEditor, setShowJsonEditor] = useState(false);
   const [jsonEditorContent, setJsonEditorContent] = useState("");
+
+  // Send EDITOR_READY message when component mounts
+  useEffect(() => {
+    window.parent.postMessage({ type: 'EDITOR_READY' }, '*');
+  }, []);
+
+  // Listen for LOAD_MAP_DATA messages
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data.type === 'LOAD_MAP_DATA') {
+        const { tiles, troops } = event.data;
+        if (tiles) {
+          setTiles(tiles);
+          setTroops(troops || []);
+          setSelectedTile(null);
+          setSelectedTroopId(null);
+          toast.success(`Loaded map data from Quest Builder`);
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   const handleImport = (file: File) => {
     const reader = new FileReader();
