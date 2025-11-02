@@ -139,6 +139,26 @@ const Index = () => {
     toast.success("Map cleared");
   };
 
+  const handleClearTroops = () => {
+    setTroops([]);
+    setSelectedTroopId(null);
+    toast.success("All troops cleared");
+  };
+
+  const handleResetTiles = () => {
+    const resetTiles = tiles.map(tile => ({
+      ...tile,
+      IsWalkable: true,
+      IsHole: false,
+      IsBonus: false,
+      IsObstacle: false,
+      IsSpawnP1: false,
+      IsSpawnP2: false
+    }));
+    setTiles(resetTiles);
+    toast.success("All tiles reset to walkable");
+  };
+
   const handleSendToQuestBuilder = () => {
     const mapData = {
       type: 'MAP_DATA',
@@ -622,6 +642,26 @@ const Index = () => {
             variant="destructive"
           >
             Clear Map
+          </Button>
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClearTroops();
+            }}
+            variant="destructive"
+            disabled={troops.length === 0}
+          >
+            Clear Troops
+          </Button>
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleResetTiles();
+            }}
+            variant="destructive"
+            disabled={tiles.length === 0}
+          >
+            Reset Tiles
           </Button>
           <Button 
             onClick={(e) => {
