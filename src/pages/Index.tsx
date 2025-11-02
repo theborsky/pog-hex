@@ -580,6 +580,13 @@ const Index = () => {
         className="flex-1 overflow-hidden relative transition-colors duration-300"
         style={{ backgroundColor: viewMode === "troops" ? "#cccccc" : undefined }}
         onClick={() => {
+          // Before deselecting, remove any selected troop with Type None (0)
+          if (selectedTroopId !== null && viewMode === "troops") {
+            const currentTroop = troops.find(t => t.EntityId === selectedTroopId);
+            if (currentTroop && currentTroop.Type === 0) {
+              setTroops(troops.filter(t => t.EntityId !== selectedTroopId));
+            }
+          }
           setSelectedTile(null);
           setSelectedTroopId(null);
         }}
