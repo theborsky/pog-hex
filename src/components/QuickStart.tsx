@@ -44,27 +44,27 @@ export function QuickStart({ onLoadMap }: QuickStartProps) {
               onClick={() => handleLoadTemplate("Desolation Pass")}
               size="lg"
               variant="outline"
-              className="min-w-32 gap-2"
+              className="w-32 h-32 flex-col gap-2"
             >
-              <Square className="h-4 w-4" />
+              <Square className="h-8 w-8" />
               Small
             </Button>
             <Button
               onClick={() => handleLoadTemplate("Wild Steppes")}
               size="lg"
               variant="outline"
-              className="min-w-32 gap-2"
+              className="w-32 h-32 flex-col gap-2"
             >
-              <SquareStack className="h-4 w-4" />
+              <SquareStack className="h-8 w-8" />
               Medium
             </Button>
             <Button
               onClick={() => handleLoadTemplate("Mt.Bosk")}
               size="lg"
               variant="outline"
-              className="min-w-32 gap-2"
+              className="w-32 h-32 flex-col gap-2"
             >
-              <Maximize2 className="h-4 w-4" />
+              <Maximize2 className="h-8 w-8" />
               Large
             </Button>
           </div>
