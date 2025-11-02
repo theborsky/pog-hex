@@ -131,24 +131,35 @@ const Index = () => {
       setSelectedTile(pos);
       setSelectedTroopId(null);
     } else {
-      // Before selecting new tile, remove any selected troop with Type None (0)
+      // In troops mode, first clean up any Type None troops
+      let cleanedTroops = troops;
       if (selectedTroopId !== null) {
         const currentTroop = troops.find(t => t.EntityId === selectedTroopId);
         if (currentTroop && currentTroop.Type === 0) {
-          setTroops(troops.filter(t => t.EntityId !== selectedTroopId));
+          cleanedTroops = troops.filter(t => t.EntityId !== selectedTroopId);
+          setTroops(cleanedTroops);
         }
       }
       
-      // In troops mode, set selected tile for visual feedback
+      // Set selected tile for visual feedback
       setSelectedTile(pos);
-      // Find troop at this position
-      const troopAtPos = troops.find(t => t.Pos.x === pos.x && t.Pos.y === pos.y);
+      
+      // Find troop at this position in the cleaned troops array
+      const troopAtPos = cleanedTroops.find(t => t.Pos.x === pos.x && t.Pos.y === pos.y);
       if (troopAtPos) {
         setSelectedTroopId(troopAtPos.EntityId);
       } else {
-        // No troop at this position, create a new one
-        const newTroopId = handleAddTroop(pos.x, pos.y);
-        setSelectedTroopId(newTroopId);
+        // No troop at this position, create a new one using cleaned array
+        const newEntityId = cleanedTroops.length > 0 ? Math.max(...cleanedTroops.map(t => t.EntityId)) + 1 : 1;
+        const newTroop: Troop = {
+          EntityId: newEntityId,
+          Pos: { x: pos.x, y: pos.y },
+          Type: 0,
+          Owner: 1,
+        };
+        setTroops([...cleanedTroops, newTroop]);
+        setSelectedTroopId(newEntityId);
+        toast.success(`Added troop at (${pos.x}, ${pos.y})`);
       }
     }
   };
