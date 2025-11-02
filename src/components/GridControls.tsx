@@ -93,7 +93,9 @@ export const GridControls = ({
               <div className="flex items-center justify-between">
                 <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
                 <Button
-                  onClick={() => onRemoveColumn(parseInt(columnX))}
+                  onClick={() => {
+                    onRemoveColumn(parseInt(columnX));
+                  }}
                   variant="ghost"
                   size="sm"
                   className="h-6 text-xs"
@@ -125,14 +127,18 @@ export const GridControls = ({
                   <Plus className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => onAddColumn(parseInt(columnX))}
+                  onClick={() => {
+                    onAddColumn(parseInt(columnX));
+                  }}
                   size="icon"
                   variant="default"
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => onRemoveColumn(parseInt(columnX))}
+                  onClick={() => {
+                    onRemoveColumn(parseInt(columnX));
+                  }}
                   size="icon"
                   variant="destructive"
                 >
@@ -145,7 +151,9 @@ export const GridControls = ({
               <div className="flex items-center justify-between">
                 <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
                 <Button
-                  onClick={() => onRemoveRow(parseInt(rowY))}
+                  onClick={() => {
+                    onRemoveRow(parseInt(rowY));
+                  }}
                   variant="ghost"
                   size="sm"
                   className="h-6 text-xs"
@@ -177,14 +185,18 @@ export const GridControls = ({
                   <Plus className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => onAddRow(parseInt(rowY))}
+                  onClick={() => {
+                    onAddRow(parseInt(rowY));
+                  }}
                   size="icon"
                   variant="default"
                 >
                   <Plus className="h-4 w-4" />
                 </Button>
                 <Button
-                  onClick={() => onRemoveRow(parseInt(rowY))}
+                  onClick={() => {
+                    onRemoveRow(parseInt(rowY));
+                  }}
                   size="icon"
                   variant="destructive"
                 >
