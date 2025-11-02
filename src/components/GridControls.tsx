@@ -92,16 +92,14 @@ export const GridControls = ({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
-                {currentMaxX > 0 && (
-                  <Button
-                    onClick={() => onRemoveColumn(currentMaxX)}
-                    variant="ghost"
-                    size="sm"
-                    className="h-6 text-xs"
-                  >
-                    Remove Last ({currentMaxX})
-                  </Button>
-                )}
+                <Button
+                  onClick={() => onRemoveColumn(parseInt(columnX))}
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 text-xs"
+                >
+                  Delete Current
+                </Button>
               </div>
               <div className="flex gap-2">
                 <Button
@@ -146,16 +144,14 @@ export const GridControls = ({
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
-                {currentMaxY > 0 && (
-                  <Button
-                    onClick={() => onRemoveRow(currentMaxY)}
-                    variant="ghost"
-                    size="sm"
-                    className="h-6 text-xs"
-                  >
-                    Remove Last ({currentMaxY})
-                  </Button>
-                )}
+                <Button
+                  onClick={() => onRemoveRow(parseInt(rowY))}
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 text-xs"
+                >
+                  Delete Current
+                </Button>
               </div>
               <div className="flex gap-2">
                 <Button
