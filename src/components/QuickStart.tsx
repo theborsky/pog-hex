@@ -3,6 +3,7 @@ import { PREDEFINED_MAPS } from "@/data/maps";
 import { createBlankTemplate } from "@/utils/templateGenerator";
 import { Button } from "./ui/button";
 import { MapThumbnail } from "./MapThumbnail";
+import { Square, SquareStack, Maximize2 } from "lucide-react";
 
 interface QuickStartProps {
   onLoadMap: (tiles: any[], troops: any[]) => void;
@@ -43,24 +44,27 @@ export function QuickStart({ onLoadMap }: QuickStartProps) {
               onClick={() => handleLoadTemplate("Desolation Pass")}
               size="lg"
               variant="outline"
-              className="min-w-32"
+              className="min-w-32 gap-2"
             >
+              <Square className="h-4 w-4" />
               Small
             </Button>
             <Button
               onClick={() => handleLoadTemplate("Wild Steppes")}
               size="lg"
               variant="outline"
-              className="min-w-32"
+              className="min-w-32 gap-2"
             >
+              <SquareStack className="h-4 w-4" />
               Medium
             </Button>
             <Button
               onClick={() => handleLoadTemplate("Mt.Bosk")}
               size="lg"
               variant="outline"
-              className="min-w-32"
+              className="min-w-32 gap-2"
             >
+              <Maximize2 className="h-4 w-4" />
               Large
             </Button>
           </div>
