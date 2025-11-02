@@ -544,9 +544,6 @@ const Index = () => {
                   <TabsTrigger value="tiles">Tiles</TabsTrigger>
                   <TabsTrigger value="troops">Troops</TabsTrigger>
                 </TabsList>
-                <TabsContent value="tiles" className="space-y-4 mt-4">
-                  <Legend />
-                </TabsContent>
                 <TabsContent value="troops" className="space-y-4 mt-4">
                   <TroopControls onAddTroop={handleAddTroop} />
                   <TroopList
@@ -696,6 +693,13 @@ const Index = () => {
           />
         ) : (
           <HexGrid tiles={tiles} selectedTile={selectedTile} onTileClick={handleTileClick} troops={troops} viewMode={viewMode} />
+        )}
+        
+        {/* Legend at bottom - only show when tiles loaded and in tiles mode */}
+        {tiles.length > 0 && viewMode === "tiles" && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
+            <Legend />
+          </div>
         )}
       </main>
     </div>

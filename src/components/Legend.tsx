@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 
 export const Legend = () => {
   const items = [
@@ -12,21 +12,18 @@ export const Legend = () => {
   ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-lg">Legend</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-2">
+    <Card className="w-fit">
+      <CardContent className="flex items-center gap-4 p-3">
         {items.map(({ label, color, stroke }) => (
-          <div key={label} className="flex items-center gap-2">
+          <div key={label} className="flex items-center gap-1.5">
             <div
-              className="w-6 h-6 rounded border-2"
+              className="w-4 h-4 rounded border-2"
               style={{
                 backgroundColor: color,
                 borderColor: stroke,
               }}
             />
-            <span className="text-sm">{label}</span>
+            <span className="text-xs whitespace-nowrap">{label}</span>
           </div>
         ))}
       </CardContent>
