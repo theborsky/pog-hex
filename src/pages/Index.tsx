@@ -534,7 +534,14 @@ const Index = () => {
           <TroopList
             troops={troops}
             selectedTroopId={selectedTroopId}
-            onSelectTroop={setSelectedTroopId}
+            onSelectTroop={(troopId) => {
+              const troop = troops.find(t => t.EntityId === troopId);
+              if (troop) {
+                setViewMode("troops");
+                setSelectedTile(troop.Pos);
+                setSelectedTroopId(troopId);
+              }
+            }}
             onRemoveTroop={(troopId) => {
               setTroops(troops.filter((t) => t.EntityId !== troopId));
               const troop = troops.find(t => t.EntityId === troopId);
