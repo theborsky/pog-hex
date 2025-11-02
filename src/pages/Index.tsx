@@ -11,6 +11,7 @@ import { TroopList } from "@/components/TroopList";
 import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
 import { MapSelector } from "@/components/MapSelector";
+import { QuickStart } from "@/components/QuickStart";
 import { PREDEFINED_MAPS } from "@/data/maps";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -677,12 +678,15 @@ const Index = () => {
         })()}
         
         {tiles.length === 0 ? (
-          <div className="h-full flex items-center justify-center">
-            <div className="text-center">
-              <h2 className="text-2xl font-semibold mb-2">No Grid Loaded</h2>
-              <p className="text-muted-foreground">Import a JSON file or Load a Current Map to get started</p>
-            </div>
-          </div>
+          <QuickStart 
+            onLoadMap={(loadedTiles, loadedTroops) => {
+              setTiles(loadedTiles);
+              setTroops(loadedTroops);
+              setSelectedTile(null);
+              setSelectedTroopId(null);
+              toast.success(`Loaded map with ${loadedTiles.length} tiles`);
+            }} 
+          />
         ) : (
           <HexGrid tiles={tiles} selectedTile={selectedTile} onTileClick={handleTileClick} troops={troops} viewMode={viewMode} />
         )}
