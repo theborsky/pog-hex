@@ -539,14 +539,6 @@ const Index = () => {
               <ChevronDown className={`h-4 w-4 transition-transform ${editTilesOpen ? "" : "-rotate-90"}`} />
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-3">
-              <Button 
-                onClick={() => setSelectedTile(null)} 
-                variant="outline" 
-                className="w-full text-primary hover:bg-primary hover:text-primary-foreground disabled:text-muted-foreground disabled:hover:bg-transparent"
-                disabled={!selectedTile}
-              >
-                Clear Selected Tile
-              </Button>
               <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="tiles">Tiles</TabsTrigger>
@@ -589,7 +581,7 @@ const Index = () => {
         }}
       >
         {/* Top Controls Bar */}
-        <div className="absolute top-4 left-4 z-20">
+        <div className="absolute top-4 left-4 z-20 flex gap-2">
           <Button 
             onClick={(e) => {
               e.stopPropagation();
@@ -598,6 +590,16 @@ const Index = () => {
             variant="destructive"
           >
             Clear Map
+          </Button>
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedTile(null);
+            }}
+            variant="outline"
+            disabled={!selectedTile}
+          >
+            Clear Selected Tile
           </Button>
         </div>
         
