@@ -131,6 +131,14 @@ const Index = () => {
       setSelectedTile(pos);
       setSelectedTroopId(null);
     } else {
+      // Before selecting new tile, remove any selected troop with Type None (0)
+      if (selectedTroopId !== null) {
+        const currentTroop = troops.find(t => t.EntityId === selectedTroopId);
+        if (currentTroop && currentTroop.Type === 0) {
+          setTroops(troops.filter(t => t.EntityId !== selectedTroopId));
+        }
+      }
+      
       // In troops mode, set selected tile for visual feedback
       setSelectedTile(pos);
       // Find troop at this position
