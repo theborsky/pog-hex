@@ -90,19 +90,7 @@ export const GridControls = ({
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
-                <Button
-                  onClick={() => {
-                    onRemoveColumn(parseInt(columnX));
-                  }}
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 text-xs"
-                >
-                  Delete Current
-                </Button>
-              </div>
+              <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
               <div className="flex gap-2">
                 <Button
                   onClick={() => setColumnX((parseInt(columnX) - 1).toString())}
@@ -129,6 +117,7 @@ export const GridControls = ({
                 <Button
                   onClick={() => {
                     onAddColumn(parseInt(columnX));
+                    setColumnX((parseInt(columnX) + 1).toString());
                   }}
                   size="icon"
                   variant="default"
@@ -137,7 +126,9 @@ export const GridControls = ({
                 </Button>
                 <Button
                   onClick={() => {
-                    onRemoveColumn(parseInt(columnX));
+                    const currentVal = parseInt(columnX);
+                    onRemoveColumn(currentVal - 1);
+                    setColumnX((currentVal - 1).toString());
                   }}
                   size="icon"
                   variant="destructive"
@@ -148,19 +139,7 @@ export const GridControls = ({
             </div>
             
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
-                <Button
-                  onClick={() => {
-                    onRemoveRow(parseInt(rowY));
-                  }}
-                  variant="ghost"
-                  size="sm"
-                  className="h-6 text-xs"
-                >
-                  Delete Current
-                </Button>
-              </div>
+              <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
               <div className="flex gap-2">
                 <Button
                   onClick={() => setRowY((parseInt(rowY) - 1).toString())}
@@ -187,6 +166,7 @@ export const GridControls = ({
                 <Button
                   onClick={() => {
                     onAddRow(parseInt(rowY));
+                    setRowY((parseInt(rowY) + 1).toString());
                   }}
                   size="icon"
                   variant="default"
@@ -195,7 +175,9 @@ export const GridControls = ({
                 </Button>
                 <Button
                   onClick={() => {
-                    onRemoveRow(parseInt(rowY));
+                    const currentVal = parseInt(rowY);
+                    onRemoveRow(currentVal - 1);
+                    setRowY((currentVal - 1).toString());
                   }}
                   size="icon"
                   variant="destructive"
