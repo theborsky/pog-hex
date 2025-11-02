@@ -93,7 +93,7 @@ export const GridControls = ({
               <div className="flex items-center gap-2">
                 <Label htmlFor="column-x" className="text-sm font-medium">Current Column (X)</Label>
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground font-semibold">
-                  {columnX}
+                  {currentMaxX}
                 </div>
               </div>
               <div className="flex gap-2">
@@ -147,7 +147,7 @@ export const GridControls = ({
               <div className="flex items-center gap-2">
                 <Label htmlFor="row-y" className="text-sm font-medium">Current Row (Y)</Label>
                 <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground font-semibold">
-                  {rowY}
+                  {currentMaxY}
                 </div>
               </div>
               <div className="flex gap-2">
