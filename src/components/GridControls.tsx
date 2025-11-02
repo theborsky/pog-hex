@@ -80,81 +80,68 @@ export const GridControls = ({
       )}
 
       {!showImportExportOnly && (
-        <>
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Manage Columns</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div>
-                <Label htmlFor="column-x">Column X</Label>
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-lg">Manage Grid</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
+              <div className="flex gap-2">
                 <Input
                   id="column-x"
                   type="number"
                   value={columnX}
                   onChange={(e) => setColumnX(e.target.value)}
-                  placeholder="Enter X coordinate"
+                  placeholder="X"
+                  className="flex-1"
                 />
-              </div>
-              <div className="flex gap-2">
                 <Button
                   onClick={() => onAddColumn(parseInt(columnX))}
-                  className="flex-1"
-                  size="sm"
+                  size="icon"
+                  variant="default"
                 >
-                  <Plus className="mr-1 h-4 w-4" />
-                  Add
+                  <Plus className="h-4 w-4" />
                 </Button>
                 <Button
                   onClick={() => onRemoveColumn(parseInt(columnX))}
+                  size="icon"
                   variant="destructive"
-                  className="flex-1"
-                  size="sm"
                 >
-                  <Trash2 className="mr-1 h-4 w-4" />
-                  Remove
+                  <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-            </CardContent>
-          </Card>
-
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Manage Rows</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <div>
-                <Label htmlFor="row-y">Row Y</Label>
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
+              <div className="flex gap-2">
                 <Input
                   id="row-y"
                   type="number"
                   value={rowY}
                   onChange={(e) => setRowY(e.target.value)}
-                  placeholder="Enter Y coordinate"
+                  placeholder="Y"
+                  className="flex-1"
                 />
-              </div>
-              <div className="flex gap-2">
                 <Button
                   onClick={() => onAddRow(parseInt(rowY))}
-                  className="flex-1"
-                  size="sm"
+                  size="icon"
+                  variant="default"
                 >
-                  <Plus className="mr-1 h-4 w-4" />
-                  Add
+                  <Plus className="h-4 w-4" />
                 </Button>
                 <Button
                   onClick={() => onRemoveRow(parseInt(rowY))}
+                  size="icon"
                   variant="destructive"
-                  className="flex-1"
-                  size="sm"
                 >
-                  <Trash2 className="mr-1 h-4 w-4" />
-                  Remove
+                  <Trash2 className="h-4 w-4" />
                 </Button>
               </div>
-            </CardContent>
-          </Card>
-        </>
+            </div>
+          </CardContent>
+        </Card>
       )}
     </div>
   );
