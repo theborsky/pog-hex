@@ -110,7 +110,7 @@ export const GridControls = ({
                   value={columnX}
                   onChange={(e) => setColumnX(e.target.value)}
                   placeholder="X"
-                  className="flex-1"
+                  className="w-16"
                 />
                 <Button
                   onClick={() => setColumnX((parseInt(columnX) + 1).toString())}
@@ -124,10 +124,11 @@ export const GridControls = ({
                     onAddColumn(parseInt(columnX));
                     setColumnX((parseInt(columnX) + 1).toString());
                   }}
-                  size="icon"
                   variant="default"
+                  className="gap-1"
                 >
                   <Plus className="h-4 w-4" />
+                  Add
                 </Button>
                 <Button
                   onClick={() => {
@@ -164,7 +165,7 @@ export const GridControls = ({
                   value={rowY}
                   onChange={(e) => setRowY(e.target.value)}
                   placeholder="Y"
-                  className="flex-1"
+                  className="w-16"
                 />
                 <Button
                   onClick={() => setRowY((parseInt(rowY) + 1).toString())}
@@ -178,10 +179,11 @@ export const GridControls = ({
                     onAddRow(parseInt(rowY));
                     setRowY((parseInt(rowY) + 1).toString());
                   }}
-                  size="icon"
                   variant="default"
+                  className="gap-1"
                 >
                   <Plus className="h-4 w-4" />
+                  Add
                 </Button>
                 <Button
                   onClick={() => {
