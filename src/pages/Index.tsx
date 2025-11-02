@@ -531,26 +531,21 @@ const Index = () => {
 
 
           {/* Troops Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
-              Troops
-            </h2>
-            <TroopList
-              troops={troops}
-              selectedTroopId={selectedTroopId}
-              onSelectTroop={setSelectedTroopId}
-              onRemoveTroop={(troopId) => {
-                setTroops(troops.filter((t) => t.EntityId !== troopId));
-                const troop = troops.find(t => t.EntityId === troopId);
-                if (troop) {
-                  toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-                }
-                if (selectedTroopId === troopId) {
-                  setSelectedTroopId(null);
-                }
-              }}
-            />
-          </div>
+          <TroopList
+            troops={troops}
+            selectedTroopId={selectedTroopId}
+            onSelectTroop={setSelectedTroopId}
+            onRemoveTroop={(troopId) => {
+              setTroops(troops.filter((t) => t.EntityId !== troopId));
+              const troop = troops.find(t => t.EntityId === troopId);
+              if (troop) {
+                toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+              }
+              if (selectedTroopId === troopId) {
+                setSelectedTroopId(null);
+              }
+            }}
+          />
         </div>
       </aside>
 
