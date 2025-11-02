@@ -533,68 +533,67 @@ const Index = () => {
           {/* Theme Toggle */}
           <ThemeToggle />
           
-          {/* Load and Save Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-foreground pb-2 px-6">
-              Load and Save
-            </h2>
-            <MapSelector onLoadMap={handleLoadPredefinedMap} />
-            <GridControls
-              onImport={handleImport}
-              onExport={handleExport}
-              onAddColumn={handleAddColumn}
-              onRemoveColumn={handleRemoveColumn}
-              onAddRow={handleAddRow}
-              onRemoveRow={handleRemoveRow}
-              showImportExportOnly
-            />
-          </div>
-
-
-          {/* Edit Grid Section */}
-          <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-foreground pb-2 px-6">
-              Edit Grid
-            </h2>
-            <GridControls
-              onImport={handleImport}
-              onExport={handleExport}
-              onAddColumn={handleAddColumn}
-              onRemoveColumn={handleRemoveColumn}
-              onAddRow={handleAddRow}
-              onRemoveRow={handleRemoveRow}
-              showGridControlsOnly
-              defaultColumnX={getNextColumnX()}
-              defaultRowY={getNextRowY()}
-              currentMaxX={getCurrentMaxX()}
-              currentMaxY={getCurrentMaxY()}
-            />
-          </div>
-
-
-          {/* Troops Section */}
-          <TroopList
-            troops={troops}
-            selectedTroopId={selectedTroopId}
-            onSelectTroop={(troopId) => {
-              const troop = troops.find(t => t.EntityId === troopId);
-              if (troop) {
-                setViewMode("troops");
-                setSelectedTile(troop.Pos);
-                setSelectedTroopId(troopId);
-              }
-            }}
-            onRemoveTroop={(troopId) => {
-              setTroops(troops.filter((t) => t.EntityId !== troopId));
-              const troop = troops.find(t => t.EntityId === troopId);
-              if (troop) {
-                toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-              }
-              if (selectedTroopId === troopId) {
-                setSelectedTroopId(null);
-              }
-            }}
+          {/* Import/Export */}
+          <GridControls
+            onImport={handleImport}
+            onExport={handleExport}
+            onAddColumn={handleAddColumn}
+            onRemoveColumn={handleRemoveColumn}
+            onAddRow={handleAddRow}
+            onRemoveRow={handleRemoveRow}
+            showImportExportOnly
           />
+          
+          {/* Current Maps */}
+          <MapSelector onLoadMap={handleLoadPredefinedMap} />
+
+          {/* Edit Grid Section - Only show when map is loaded */}
+          {tiles.length > 0 && (
+            <div className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground pb-2 px-6">
+                Edit Grid
+              </h2>
+              <GridControls
+                onImport={handleImport}
+                onExport={handleExport}
+                onAddColumn={handleAddColumn}
+                onRemoveColumn={handleRemoveColumn}
+                onAddRow={handleAddRow}
+                onRemoveRow={handleRemoveRow}
+                showGridControlsOnly
+                defaultColumnX={getNextColumnX()}
+                defaultRowY={getNextRowY()}
+                currentMaxX={getCurrentMaxX()}
+                currentMaxY={getCurrentMaxY()}
+              />
+            </div>
+          )}
+
+          {/* Troops Section - Only show when map is loaded */}
+          {tiles.length > 0 && (
+            <TroopList
+              troops={troops}
+              selectedTroopId={selectedTroopId}
+              onSelectTroop={(troopId) => {
+                const troop = troops.find(t => t.EntityId === troopId);
+                if (troop) {
+                  setViewMode("troops");
+                  setSelectedTile(troop.Pos);
+                  setSelectedTroopId(troopId);
+                }
+              }}
+              onRemoveTroop={(troopId) => {
+                setTroops(troops.filter((t) => t.EntityId !== troopId));
+                const troop = troops.find(t => t.EntityId === troopId);
+                if (troop) {
+                  toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                }
+                if (selectedTroopId === troopId) {
+                  setSelectedTroopId(null);
+                }
+              }}
+            />
+          )}
         </div>
       </aside>
 
