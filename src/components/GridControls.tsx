@@ -85,10 +85,7 @@ export const GridControls = ({
 
       {!showImportExportOnly && (
         <Card>
-          <CardHeader>
-            <CardTitle className="text-lg">Manage Grid</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 pt-6">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
                 <Label htmlFor="column-x" className="text-sm font-medium">Current Column (X)</Label>
