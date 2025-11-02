@@ -506,13 +506,6 @@ const Index = () => {
                 onRemoveRow={handleRemoveRow}
                 showImportExportOnly
               />
-              <Button 
-                onClick={handleClearMap} 
-                variant="destructive" 
-                className="w-full"
-              >
-                Clear Map
-              </Button>
             </CollapsibleContent>
           </Collapsible>
 
@@ -596,6 +589,18 @@ const Index = () => {
         }}
       >
         {/* Top Controls Bar */}
+        <div className="absolute top-4 left-4 z-10">
+          <Button 
+            onClick={(e) => {
+              e.stopPropagation();
+              handleClearMap();
+            }}
+            variant="destructive"
+          >
+            Clear Map
+          </Button>
+        </div>
+        
         <div className="absolute top-4 left-0 right-0 z-10 flex items-center justify-center px-4">
           <Tabs 
             value={viewMode} 
