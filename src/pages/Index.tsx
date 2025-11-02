@@ -535,7 +535,7 @@ const Index = () => {
           
           {/* Load and Save Section */}
           <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-foreground pb-2">
+            <h2 className="text-lg font-semibold text-foreground pb-2 px-6">
               Load and Save
             </h2>
             <MapSelector onLoadMap={handleLoadPredefinedMap} />
@@ -553,7 +553,7 @@ const Index = () => {
 
           {/* Edit Grid Section */}
           <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-foreground pb-2">
+            <h2 className="text-lg font-semibold text-foreground pb-2 px-6">
               Edit Grid
             </h2>
             <GridControls
