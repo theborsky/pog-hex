@@ -648,7 +648,7 @@ const Index = () => {
               e.stopPropagation();
               handleClearTroops();
             }}
-            variant="destructive"
+            variant="default"
             disabled={troops.length === 0}
           >
             Clear Troops
@@ -658,7 +658,7 @@ const Index = () => {
               e.stopPropagation();
               handleResetTiles();
             }}
-            variant="destructive"
+            variant="default"
             disabled={tiles.length === 0}
           >
             Reset Tiles
