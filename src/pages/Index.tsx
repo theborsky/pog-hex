@@ -30,7 +30,6 @@ const Index = () => {
   const [viewMode, setViewMode] = useState<"tiles" | "troops">("tiles");
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [exportFilename, setExportFilename] = useState("hex-grid");
-  const [loadSaveOpen, setLoadSaveOpen] = useState(true);
   const [showJsonEditor, setShowJsonEditor] = useState(false);
   const [jsonEditorContent, setJsonEditorContent] = useState("");
   
@@ -531,26 +530,21 @@ const Index = () => {
         </div>
         <div className="p-4 space-y-4">
           {/* Load and Save Section */}
-          <Collapsible open={loadSaveOpen} onOpenChange={setLoadSaveOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
-              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
-                Load and Save
-              </h2>
-              <ChevronDown className={`h-4 w-4 transition-transform ${loadSaveOpen ? "" : "-rotate-90"}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-3">
-              <MapSelector onLoadMap={handleLoadPredefinedMap} />
-              <GridControls
-                onImport={handleImport}
-                onExport={handleExport}
-                onAddColumn={handleAddColumn}
-                onRemoveColumn={handleRemoveColumn}
-                onAddRow={handleAddRow}
-                onRemoveRow={handleRemoveRow}
-                showImportExportOnly
-              />
-            </CollapsibleContent>
-          </Collapsible>
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Load and Save
+            </h2>
+            <MapSelector onLoadMap={handleLoadPredefinedMap} />
+            <GridControls
+              onImport={handleImport}
+              onExport={handleExport}
+              onAddColumn={handleAddColumn}
+              onRemoveColumn={handleRemoveColumn}
+              onAddRow={handleAddRow}
+              onRemoveRow={handleRemoveRow}
+              showImportExportOnly
+            />
+          </div>
 
 
           {/* Edit Grid Section */}
