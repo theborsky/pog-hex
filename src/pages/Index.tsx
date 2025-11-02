@@ -530,39 +530,32 @@ const Index = () => {
             </CollapsibleContent>
           </Collapsible>
 
-          {/* Edit Tiles Section */}
+
+          {/* Troops Section */}
           <Collapsible open={editTilesOpen} onOpenChange={setEditTilesOpen}>
             <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
               <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
-                Edit Tiles
+                Troops
               </h2>
               <ChevronDown className={`h-4 w-4 transition-transform ${editTilesOpen ? "" : "-rotate-90"}`} />
             </CollapsibleTrigger>
             <CollapsibleContent className="space-y-3">
-              <Tabs value={viewMode} onValueChange={(v) => setViewMode(v as "tiles" | "troops")}>
-                <TabsList className="grid w-full grid-cols-2">
-                  <TabsTrigger value="tiles">Tiles</TabsTrigger>
-                  <TabsTrigger value="troops">Troops</TabsTrigger>
-                </TabsList>
-                <TabsContent value="troops" className="space-y-4 mt-4">
-                  <TroopControls onAddTroop={handleAddTroop} />
-                  <TroopList
-                    troops={troops}
-                    selectedTroopId={selectedTroopId}
-                    onSelectTroop={setSelectedTroopId}
-                    onRemoveTroop={(troopId) => {
-                      setTroops(troops.filter((t) => t.EntityId !== troopId));
-                      const troop = troops.find(t => t.EntityId === troopId);
-                      if (troop) {
-                        toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-                      }
-                      if (selectedTroopId === troopId) {
-                        setSelectedTroopId(null);
-                      }
-                    }}
-                  />
-                </TabsContent>
-              </Tabs>
+              <TroopControls onAddTroop={handleAddTroop} />
+              <TroopList
+                troops={troops}
+                selectedTroopId={selectedTroopId}
+                onSelectTroop={setSelectedTroopId}
+                onRemoveTroop={(troopId) => {
+                  setTroops(troops.filter((t) => t.EntityId !== troopId));
+                  const troop = troops.find(t => t.EntityId === troopId);
+                  if (troop) {
+                    toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                  }
+                  if (selectedTroopId === troopId) {
+                    setSelectedTroopId(null);
+                  }
+                }}
+              />
             </CollapsibleContent>
           </Collapsible>
         </div>
