@@ -46,6 +46,19 @@ const Index = () => {
     const allY = tiles.map(t => t.Pos.y);
     return Math.max(...allY) + 1;
   };
+  
+  // Get current max column and row
+  const getCurrentMaxX = () => {
+    if (tiles.length === 0) return 0;
+    const allX = tiles.map(t => t.Pos.x);
+    return Math.max(...allX);
+  };
+  
+  const getCurrentMaxY = () => {
+    if (tiles.length === 0) return 0;
+    const allY = tiles.map(t => t.Pos.y);
+    return Math.max(...allY);
+  };
 
   // Send EDITOR_READY message when component mounts
   useEffect(() => {
@@ -555,6 +568,8 @@ const Index = () => {
               showGridControlsOnly
               defaultColumnX={getNextColumnX()}
               defaultRowY={getNextRowY()}
+              currentMaxX={getCurrentMaxX()}
+              currentMaxY={getCurrentMaxY()}
             />
           </div>
 
