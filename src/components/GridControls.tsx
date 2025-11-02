@@ -90,7 +90,12 @@ export const GridControls = ({
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="column-x" className="text-sm font-medium">Column X</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="column-x" className="text-sm font-medium">Current Column (X)</Label>
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground font-semibold">
+                  {columnX}
+                </div>
+              </div>
               <div className="flex gap-2">
                 <Button
                   onClick={() => setColumnX((parseInt(columnX) - 1).toString())}
@@ -139,7 +144,12 @@ export const GridControls = ({
             </div>
             
             <div className="space-y-2">
-              <Label htmlFor="row-y" className="text-sm font-medium">Row Y</Label>
+              <div className="flex items-center gap-2">
+                <Label htmlFor="row-y" className="text-sm font-medium">Current Row (Y)</Label>
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground font-semibold">
+                  {rowY}
+                </div>
+              </div>
               <div className="flex gap-2">
                 <Button
                   onClick={() => setRowY((parseInt(rowY) - 1).toString())}
