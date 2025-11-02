@@ -32,7 +32,6 @@ const Index = () => {
   const [exportFilename, setExportFilename] = useState("hex-grid");
   const [loadSaveOpen, setLoadSaveOpen] = useState(true);
   const [editGridOpen, setEditGridOpen] = useState(false);
-  const [editTilesOpen, setEditTilesOpen] = useState(true);
   const [showJsonEditor, setShowJsonEditor] = useState(false);
   const [jsonEditorContent, setJsonEditorContent] = useState("");
 
@@ -532,32 +531,26 @@ const Index = () => {
 
 
           {/* Troops Section */}
-          <Collapsible open={editTilesOpen} onOpenChange={setEditTilesOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
-              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
-                Troops
-              </h2>
-              <ChevronDown className={`h-4 w-4 transition-transform ${editTilesOpen ? "" : "-rotate-90"}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-3">
-              <TroopControls onAddTroop={handleAddTroop} />
-              <TroopList
-                troops={troops}
-                selectedTroopId={selectedTroopId}
-                onSelectTroop={setSelectedTroopId}
-                onRemoveTroop={(troopId) => {
-                  setTroops(troops.filter((t) => t.EntityId !== troopId));
-                  const troop = troops.find(t => t.EntityId === troopId);
-                  if (troop) {
-                    toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
-                  }
-                  if (selectedTroopId === troopId) {
-                    setSelectedTroopId(null);
-                  }
-                }}
-              />
-            </CollapsibleContent>
-          </Collapsible>
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Troops
+            </h2>
+            <TroopList
+              troops={troops}
+              selectedTroopId={selectedTroopId}
+              onSelectTroop={setSelectedTroopId}
+              onRemoveTroop={(troopId) => {
+                setTroops(troops.filter((t) => t.EntityId !== troopId));
+                const troop = troops.find(t => t.EntityId === troopId);
+                if (troop) {
+                  toast.success(`Removed troop at (${troop.Pos.x}, ${troop.Pos.y})`);
+                }
+                if (selectedTroopId === troopId) {
+                  setSelectedTroopId(null);
+                }
+              }}
+            />
+          </div>
         </div>
       </aside>
 
