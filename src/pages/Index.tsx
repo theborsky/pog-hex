@@ -31,9 +31,21 @@ const Index = () => {
   const [showExportDialog, setShowExportDialog] = useState(false);
   const [exportFilename, setExportFilename] = useState("hex-grid");
   const [loadSaveOpen, setLoadSaveOpen] = useState(true);
-  const [editGridOpen, setEditGridOpen] = useState(false);
   const [showJsonEditor, setShowJsonEditor] = useState(false);
   const [jsonEditorContent, setJsonEditorContent] = useState("");
+  
+  // Calculate next available column and row numbers
+  const getNextColumnX = () => {
+    if (tiles.length === 0) return 0;
+    const allX = tiles.map(t => t.Pos.x);
+    return Math.max(...allX) + 1;
+  };
+  
+  const getNextRowY = () => {
+    if (tiles.length === 0) return 0;
+    const allY = tiles.map(t => t.Pos.y);
+    return Math.max(...allY) + 1;
+  };
 
   // Send EDITOR_READY message when component mounts
   useEffect(() => {
@@ -527,26 +539,24 @@ const Index = () => {
             </CollapsibleContent>
           </Collapsible>
 
+
           {/* Edit Grid Section */}
-          <Collapsible open={editGridOpen} onOpenChange={setEditGridOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full hover:opacity-80 transition-opacity mb-3">
-              <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2 flex-1">
-                Edit Grid
-              </h2>
-              <ChevronDown className={`h-4 w-4 transition-transform ${editGridOpen ? "" : "-rotate-90"}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent className="space-y-3">
-              <GridControls
-                onImport={handleImport}
-                onExport={handleExport}
-                onAddColumn={handleAddColumn}
-                onRemoveColumn={handleRemoveColumn}
-                onAddRow={handleAddRow}
-                onRemoveRow={handleRemoveRow}
-                showGridControlsOnly
-              />
-            </CollapsibleContent>
-          </Collapsible>
+          <div className="space-y-3">
+            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+              Edit Grid
+            </h2>
+            <GridControls
+              onImport={handleImport}
+              onExport={handleExport}
+              onAddColumn={handleAddColumn}
+              onRemoveColumn={handleRemoveColumn}
+              onAddRow={handleAddRow}
+              onRemoveRow={handleRemoveRow}
+              showGridControlsOnly
+              defaultColumnX={getNextColumnX()}
+              defaultRowY={getNextRowY()}
+            />
+          </div>
 
 
           {/* Troops Section */}
