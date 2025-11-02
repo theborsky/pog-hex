@@ -589,7 +589,7 @@ const Index = () => {
         }}
       >
         {/* Top Controls Bar */}
-        <div className="absolute top-4 left-4 z-10">
+        <div className="absolute top-4 left-4 z-20">
           <Button 
             onClick={(e) => {
               e.stopPropagation();
