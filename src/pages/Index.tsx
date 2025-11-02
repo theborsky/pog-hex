@@ -12,6 +12,7 @@ import { GridControls } from "@/components/GridControls";
 import { Legend } from "@/components/Legend";
 import { MapSelector } from "@/components/MapSelector";
 import { QuickStart } from "@/components/QuickStart";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { PREDEFINED_MAPS } from "@/data/maps";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -518,20 +519,23 @@ const Index = () => {
       </Dialog>
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-96 border-r border-border bg-slate-950 text-slate-50 overflow-y-auto flex-shrink-0">
-        <div className="p-4 border-b border-slate-800">
+      <aside className="w-96 border-r border-border bg-card text-card-foreground overflow-y-auto flex-shrink-0">
+        <div className="p-4 border-b border-border">
           <div className="flex items-center justify-center mb-3">
             <a href="https://priceofglorygame.com/" target="_blank" rel="noopener noreferrer">
               <img src={pogLogo} alt="POG Logo" className="h-16 w-auto cursor-pointer hover:opacity-80 transition-opacity" />
             </a>
           </div>
-          <h1 className="text-2xl font-bold text-slate-50 text-center">Battlefield Editor</h1>
-          <p className="text-sm text-slate-400 mt-1 text-center">Customize layout and troops</p>
+          <h1 className="text-2xl font-bold text-foreground text-center">Battlefield Editor</h1>
+          <p className="text-sm text-muted-foreground mt-1 text-center">Customize layout and troops</p>
         </div>
         <div className="p-4 space-y-4">
+          {/* Theme Toggle */}
+          <ThemeToggle />
+          
           {/* Load and Save Section */}
           <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+            <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
               Load and Save
             </h2>
             <MapSelector onLoadMap={handleLoadPredefinedMap} />
@@ -549,7 +553,7 @@ const Index = () => {
 
           {/* Edit Grid Section */}
           <div className="space-y-3">
-            <h2 className="text-lg font-semibold text-slate-200 border-b border-slate-700 pb-2">
+            <h2 className="text-lg font-semibold text-foreground border-b border-border pb-2">
               Edit Grid
             </h2>
             <GridControls
@@ -596,8 +600,7 @@ const Index = () => {
 
       {/* Main Canvas */}
       <main 
-        className="flex-1 overflow-hidden relative transition-colors duration-300"
-        style={{ backgroundColor: viewMode === "troops" ? "#cccccc" : undefined }}
+        className="flex-1 overflow-hidden relative transition-colors duration-300 bg-background"
         onClick={() => {
           // Before deselecting, remove any selected troop with Type None (0)
           if (selectedTroopId !== null && viewMode === "troops") {
