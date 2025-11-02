@@ -1,25 +1,24 @@
 import { Moon, Sun } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   return (
-    <div className="flex items-center justify-between">
-      <span className="text-sm font-medium">Theme</span>
-      <Button
-        variant="outline"
-        size="sm"
-        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        className="gap-2"
-      >
-        <div className="relative w-4 h-4">
-          <Sun className="h-4 w-4 absolute inset-0 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="h-4 w-4 absolute inset-0 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-        </div>
-        <span>{theme === "dark" ? "Light" : "Dark"}</span>
-      </Button>
+    <div className="flex justify-center">
+      <Tabs value={theme} onValueChange={setTheme}>
+        <TabsList>
+          <TabsTrigger value="light" className="gap-2">
+            <Sun className="h-4 w-4" />
+            Light
+          </TabsTrigger>
+          <TabsTrigger value="dark" className="gap-2">
+            <Moon className="h-4 w-4" />
+            Dark
+          </TabsTrigger>
+        </TabsList>
+      </Tabs>
     </div>
   );
 };
