@@ -716,11 +716,11 @@ const Index = () => {
           const panelWidth = 300;
           const panelHeight = 400;
           
-          // Determine position based on tile location to avoid overlap
-          // Place panel to the left of the tile if it's on the right side, otherwise to the right
-          const horizontalOffset = selectedTileData.Pos.x > 2 ? -(panelWidth - 85) : 35;
-          // Place panel above the tile if it's on the bottom half, otherwise below
-          const verticalOffset = selectedTileData.Pos.y > 0 ? -(panelHeight - 160) : -42;
+          // Smart positioning: place panel away from tile based on its position
+          // For horizontal: place to left if tile is on right side (x >= 1), otherwise to right
+          const horizontalOffset = selectedTileData.Pos.x >= 1 ? -(panelWidth + 20) : 70;
+          // For vertical: place above if tile is on bottom half (y >= 0), otherwise below
+          const verticalOffset = selectedTileData.Pos.y >= 0 ? -(panelHeight - 100) : 60;
           
           return (
             <div
@@ -749,11 +749,11 @@ const Index = () => {
           const panelWidth = 300;
           const panelHeight = 350;
           
-          // Determine position based on troop location to avoid overlap
-          // Place panel to the left of the troop if it's on the right side, otherwise to the right
-          const horizontalOffset = selectedTroopData.Pos.x > 2 ? -(panelWidth - 85) : 35;
-          // Place panel above the troop if it's on the bottom half, otherwise below
-          const verticalOffset = selectedTroopData.Pos.y > 0 ? -(panelHeight - 135) : -42;
+          // Smart positioning: place panel away from troop based on its position
+          // For horizontal: place to left if troop is on right side (x >= 1), otherwise to right
+          const horizontalOffset = selectedTroopData.Pos.x >= 1 ? -(panelWidth + 20) : 70;
+          // For vertical: place above if troop is on bottom half (y >= 0), otherwise below
+          const verticalOffset = selectedTroopData.Pos.y >= 0 ? -(panelHeight - 100) : 60;
           
           return (
             <div
