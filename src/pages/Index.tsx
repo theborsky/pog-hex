@@ -718,7 +718,8 @@ const Index = () => {
           const spacing = 50; // Gap between tile edge and panel
           
           // Position panel to the left or right of tile based on x position
-          const isRightSide = selectedTileData.Pos.x >= 1;
+          // Use x >= 0 as threshold for better balance
+          const isRightSide = selectedTileData.Pos.x >= 0;
           
           return (
             <div
@@ -751,7 +752,8 @@ const Index = () => {
           const spacing = 50; // Gap between troop edge and panel
           
           // Position panel to the left or right of troop based on x position
-          const isRightSide = selectedTroopData.Pos.x >= 1;
+          // Use x >= 0 as threshold for better balance
+          const isRightSide = selectedTroopData.Pos.x >= 0;
           
           return (
             <div
