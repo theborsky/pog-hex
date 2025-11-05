@@ -714,20 +714,20 @@ const Index = () => {
         {selectedTileData && viewMode === "tiles" && (() => {
           const pixelPos = hexToPixel(selectedTileData.Pos);
           const panelWidth = 300;
-          const spacing = 70; // Consistent spacing from tile
+          const spacing = 50; // Gap between tile and panel
           
-          // Smart positioning: place panel away from tile based on its position
-          // For horizontal: place to left if tile is on right side (x >= 1), otherwise to right
-          const horizontalOffset = selectedTileData.Pos.x >= 1 ? -(panelWidth + spacing) : spacing;
-          // For vertical: always center vertically relative to tile
-          const verticalOffset = -150;
+          // Position panel to the left or right of tile based on x position
+          const isRightSide = selectedTileData.Pos.x >= 1;
+          const horizontalOffset = isRightSide ? -spacing : spacing;
           
           return (
             <div
               className="absolute z-20 pointer-events-auto"
               style={{
-                left: `calc(50% + ${pixelPos.x}px + ${horizontalOffset}px)`,
-                top: `calc(50% + ${pixelPos.y}px + ${verticalOffset}px)`,
+                left: isRightSide 
+                  ? `calc(50% + ${pixelPos.x - panelWidth - spacing}px)` 
+                  : `calc(50% + ${pixelPos.x + spacing}px)`,
+                top: `calc(50% + ${pixelPos.y - 150}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -747,20 +747,19 @@ const Index = () => {
         {selectedTroopData && viewMode === "troops" && (() => {
           const pixelPos = hexToPixel(selectedTroopData.Pos);
           const panelWidth = 300;
-          const spacing = 70; // Consistent spacing from troop
+          const spacing = 50; // Gap between troop and panel
           
-          // Smart positioning: place panel away from troop based on its position
-          // For horizontal: place to left if troop is on right side (x >= 1), otherwise to right
-          const horizontalOffset = selectedTroopData.Pos.x >= 1 ? -(panelWidth + spacing) : spacing;
-          // For vertical: always center vertically relative to troop
-          const verticalOffset = -150;
+          // Position panel to the left or right of troop based on x position
+          const isRightSide = selectedTroopData.Pos.x >= 1;
           
           return (
             <div
               className="absolute z-20 pointer-events-auto"
               style={{
-                left: `calc(50% + ${pixelPos.x}px + ${horizontalOffset}px)`,
-                top: `calc(50% + ${pixelPos.y}px + ${verticalOffset}px)`,
+                left: isRightSide 
+                  ? `calc(50% + ${pixelPos.x - panelWidth - spacing}px)` 
+                  : `calc(50% + ${pixelPos.x + spacing}px)`,
+                top: `calc(50% + ${pixelPos.y - 150}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
             >
