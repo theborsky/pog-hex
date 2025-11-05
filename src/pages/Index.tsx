@@ -714,19 +714,19 @@ const Index = () => {
         {selectedTileData && viewMode === "tiles" && (() => {
           const pixelPos = hexToPixel(selectedTileData.Pos);
           const panelWidth = 300;
-          const spacing = 50; // Gap between tile and panel
+          const hexRadius = 30; // HEX_SIZE from hexUtils
+          const spacing = 50; // Gap between tile edge and panel
           
           // Position panel to the left or right of tile based on x position
           const isRightSide = selectedTileData.Pos.x >= 1;
-          const horizontalOffset = isRightSide ? -spacing : spacing;
           
           return (
             <div
               className="absolute z-20 pointer-events-auto"
               style={{
                 left: isRightSide 
-                  ? `calc(50% + ${pixelPos.x - panelWidth - spacing}px)` 
-                  : `calc(50% + ${pixelPos.x + spacing}px)`,
+                  ? `calc(50% + ${pixelPos.x - hexRadius - spacing - panelWidth}px)` 
+                  : `calc(50% + ${pixelPos.x + hexRadius + spacing}px)`,
                 top: `calc(50% + ${pixelPos.y - 150}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
@@ -747,7 +747,8 @@ const Index = () => {
         {selectedTroopData && viewMode === "troops" && (() => {
           const pixelPos = hexToPixel(selectedTroopData.Pos);
           const panelWidth = 300;
-          const spacing = 50; // Gap between troop and panel
+          const hexRadius = 30; // HEX_SIZE from hexUtils
+          const spacing = 50; // Gap between troop edge and panel
           
           // Position panel to the left or right of troop based on x position
           const isRightSide = selectedTroopData.Pos.x >= 1;
@@ -757,8 +758,8 @@ const Index = () => {
               className="absolute z-20 pointer-events-auto"
               style={{
                 left: isRightSide 
-                  ? `calc(50% + ${pixelPos.x - panelWidth - spacing}px)` 
-                  : `calc(50% + ${pixelPos.x + spacing}px)`,
+                  ? `calc(50% + ${pixelPos.x - hexRadius - spacing - panelWidth}px)` 
+                  : `calc(50% + ${pixelPos.x + hexRadius + spacing}px)`,
                 top: `calc(50% + ${pixelPos.y - 150}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
