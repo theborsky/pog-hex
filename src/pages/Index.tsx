@@ -713,12 +713,21 @@ const Index = () => {
         {/* Floating Tile Properties Panel */}
         {selectedTileData && viewMode === "tiles" && (() => {
           const pixelPos = hexToPixel(selectedTileData.Pos);
+          const panelWidth = 300;
+          const panelHeight = 400;
+          
+          // Determine position based on tile location to avoid overlap
+          // Place panel to the left of the tile if it's on the right side, otherwise to the right
+          const horizontalOffset = selectedTileData.Pos.x > 2 ? -(panelWidth + 40) : 80;
+          // Place panel above the tile if it's on the bottom half, otherwise below
+          const verticalOffset = selectedTileData.Pos.y > 0 ? -(panelHeight - 40) : -80;
+          
           return (
             <div
               className="absolute z-20 pointer-events-auto"
               style={{
-                left: `calc(50% + ${pixelPos.x}px - 60px)`,
-                top: `calc(50% + ${pixelPos.y}px - 80px)`,
+                left: `calc(50% + ${pixelPos.x}px + ${horizontalOffset}px)`,
+                top: `calc(50% + ${pixelPos.y}px + ${verticalOffset}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -737,12 +746,21 @@ const Index = () => {
         {/* Floating Troop Properties Panel */}
         {selectedTroopData && viewMode === "troops" && (() => {
           const pixelPos = hexToPixel(selectedTroopData.Pos);
+          const panelWidth = 300;
+          const panelHeight = 350;
+          
+          // Determine position based on troop location to avoid overlap
+          // Place panel to the left of the troop if it's on the right side, otherwise to the right
+          const horizontalOffset = selectedTroopData.Pos.x > 2 ? -(panelWidth + 40) : 80;
+          // Place panel above the troop if it's on the bottom half, otherwise below
+          const verticalOffset = selectedTroopData.Pos.y > 0 ? -(panelHeight - 40) : -80;
+          
           return (
             <div
               className="absolute z-20 pointer-events-auto"
               style={{
-                left: `calc(50% + ${pixelPos.x}px - 60px)`,
-                top: `calc(50% + ${pixelPos.y}px - 80px)`,
+                left: `calc(50% + ${pixelPos.x}px + ${horizontalOffset}px)`,
+                top: `calc(50% + ${pixelPos.y}px + ${verticalOffset}px)`,
               }}
               onClick={(e) => e.stopPropagation()}
             >
