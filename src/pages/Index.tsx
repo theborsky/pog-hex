@@ -714,13 +714,13 @@ const Index = () => {
         {selectedTileData && viewMode === "tiles" && (() => {
           const pixelPos = hexToPixel(selectedTileData.Pos);
           const panelWidth = 300;
-          const panelHeight = 400;
+          const spacing = 70; // Consistent spacing from tile
           
           // Smart positioning: place panel away from tile based on its position
           // For horizontal: place to left if tile is on right side (x >= 1), otherwise to right
-          const horizontalOffset = selectedTileData.Pos.x >= 1 ? -(panelWidth + 20) : 70;
-          // For vertical: place above if tile is on bottom half (y >= 0), otherwise below
-          const verticalOffset = selectedTileData.Pos.y >= 0 ? -(panelHeight - 100) : 60;
+          const horizontalOffset = selectedTileData.Pos.x >= 1 ? -(panelWidth + spacing) : spacing;
+          // For vertical: always center vertically relative to tile
+          const verticalOffset = -150;
           
           return (
             <div
@@ -747,13 +747,13 @@ const Index = () => {
         {selectedTroopData && viewMode === "troops" && (() => {
           const pixelPos = hexToPixel(selectedTroopData.Pos);
           const panelWidth = 300;
-          const panelHeight = 350;
+          const spacing = 70; // Consistent spacing from troop
           
           // Smart positioning: place panel away from troop based on its position
           // For horizontal: place to left if troop is on right side (x >= 1), otherwise to right
-          const horizontalOffset = selectedTroopData.Pos.x >= 1 ? -(panelWidth + 20) : 70;
-          // For vertical: place above if troop is on bottom half (y >= 0), otherwise below
-          const verticalOffset = selectedTroopData.Pos.y >= 0 ? -(panelHeight - 100) : 60;
+          const horizontalOffset = selectedTroopData.Pos.x >= 1 ? -(panelWidth + spacing) : spacing;
+          // For vertical: always center vertically relative to troop
+          const verticalOffset = -150;
           
           return (
             <div
