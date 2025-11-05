@@ -718,9 +718,9 @@ const Index = () => {
           
           // Determine position based on tile location to avoid overlap
           // Place panel to the left of the tile if it's on the right side, otherwise to the right
-          const horizontalOffset = selectedTileData.Pos.x > 2 ? -(panelWidth + 40) : 80;
+          const horizontalOffset = selectedTileData.Pos.x > 2 ? -(panelWidth + 10) : 50;
           // Place panel above the tile if it's on the bottom half, otherwise below
-          const verticalOffset = selectedTileData.Pos.y > 0 ? -(panelHeight - 40) : -80;
+          const verticalOffset = selectedTileData.Pos.y > 0 ? -(panelHeight - 60) : -60;
           
           return (
             <div
@@ -751,9 +751,9 @@ const Index = () => {
           
           // Determine position based on troop location to avoid overlap
           // Place panel to the left of the troop if it's on the right side, otherwise to the right
-          const horizontalOffset = selectedTroopData.Pos.x > 2 ? -(panelWidth + 40) : 80;
+          const horizontalOffset = selectedTroopData.Pos.x > 2 ? -(panelWidth + 10) : 50;
           // Place panel above the troop if it's on the bottom half, otherwise below
-          const verticalOffset = selectedTroopData.Pos.y > 0 ? -(panelHeight - 40) : -80;
+          const verticalOffset = selectedTroopData.Pos.y > 0 ? -(panelHeight - 60) : -60;
           
           return (
             <div
