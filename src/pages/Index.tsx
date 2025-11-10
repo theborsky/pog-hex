@@ -89,6 +89,42 @@ const Index = () => {
     reader.onload = (e) => {
       try {
         const json = JSON.parse(e.target?.result as string) as HexGridType;
+        
+        // Check for duplicate tile coordinates
+        const tileCoords = new Set<string>();
+        const tileDuplicates: string[] = [];
+        json.Tiles.forEach(tile => {
+          const key = `${tile.Pos.x},${tile.Pos.y}`;
+          if (tileCoords.has(key)) {
+            tileDuplicates.push(key);
+          }
+          tileCoords.add(key);
+        });
+        
+        // Check for duplicate troop coordinates
+        const troopCoords = new Set<string>();
+        const troopDuplicates: string[] = [];
+        (json.Troops || []).forEach(troop => {
+          const key = `${troop.Pos.x},${troop.Pos.y}`;
+          if (troopCoords.has(key)) {
+            troopDuplicates.push(key);
+          }
+          troopCoords.add(key);
+        });
+        
+        // Show warnings if duplicates found
+        if (tileDuplicates.length > 0 || troopDuplicates.length > 0) {
+          let errorMsg = "Import failed - duplicate coordinates found:\n";
+          if (tileDuplicates.length > 0) {
+            errorMsg += `Tiles: ${tileDuplicates.join(", ")}\n`;
+          }
+          if (troopDuplicates.length > 0) {
+            errorMsg += `Troops: ${troopDuplicates.join(", ")}`;
+          }
+          toast.error(errorMsg);
+          return;
+        }
+        
         setTiles(json.Tiles);
         setTroops(json.Troops || []);
         setSelectedTile(null);
@@ -107,6 +143,42 @@ const Index = () => {
   };
 
   const handleConfirmExport = () => {
+    // Check for duplicate tile coordinates before export
+    const tileCoords = new Set<string>();
+    const tileDuplicates: string[] = [];
+    tiles.forEach(tile => {
+      const key = `${tile.Pos.x},${tile.Pos.y}`;
+      if (tileCoords.has(key)) {
+        tileDuplicates.push(key);
+      }
+      tileCoords.add(key);
+    });
+    
+    // Check for duplicate troop coordinates before export
+    const troopCoords = new Set<string>();
+    const troopDuplicates: string[] = [];
+    troops.forEach(troop => {
+      const key = `${troop.Pos.x},${troop.Pos.y}`;
+      if (troopCoords.has(key)) {
+        troopDuplicates.push(key);
+      }
+      troopCoords.add(key);
+    });
+    
+    // Show warnings if duplicates found
+    if (tileDuplicates.length > 0 || troopDuplicates.length > 0) {
+      let errorMsg = "Cannot export - duplicate coordinates found:\n";
+      if (tileDuplicates.length > 0) {
+        errorMsg += `Tiles: ${tileDuplicates.join(", ")}\n`;
+      }
+      if (troopDuplicates.length > 0) {
+        errorMsg += `Troops: ${troopDuplicates.join(", ")}`;
+      }
+      toast.error(errorMsg);
+      setShowExportDialog(false);
+      return;
+    }
+    
     const gridData: HexGridType = { Tiles: tiles, Troops: troops };
     const json = JSON.stringify(gridData, null, 4);
     const blob = new Blob([json], { type: "application/json" });
