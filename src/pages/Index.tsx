@@ -212,6 +212,19 @@ const Index = () => {
   const handleUpdateTile = (updates: Partial<HexTile>) => {
     if (!selectedTile) return;
 
+    // Check for duplicate coordinates if position is being updated
+    if (updates.Pos) {
+      const duplicate = tiles.find(
+        (t) => t.Pos.x === updates.Pos!.x && 
+               t.Pos.y === updates.Pos!.y && 
+               !(t.Pos.x === selectedTile.x && t.Pos.y === selectedTile.y)
+      );
+      if (duplicate) {
+        toast.error(`A tile already exists at (${updates.Pos.x}, ${updates.Pos.y})`);
+        return;
+      }
+    }
+
     // If Obstacle is being set to true, automatically set Walkable to false
     if (updates.IsObstacle === true) {
       updates.IsWalkable = false;
@@ -408,6 +421,13 @@ const Index = () => {
   };
 
   const handleAddTroop = (x: number, y: number) => {
+    // Check for duplicate coordinates
+    const duplicate = troops.find((t) => t.Pos.x === x && t.Pos.y === y);
+    if (duplicate) {
+      toast.error(`A troop already exists at (${x}, ${y})`);
+      return;
+    }
+
     const newEntityId = troops.length > 0 ? Math.max(...troops.map(t => t.EntityId)) + 1 : 1;
     const newTroop: Troop = {
       EntityId: newEntityId,
@@ -422,6 +442,20 @@ const Index = () => {
 
   const handleUpdateTroop = (updates: Partial<Troop>) => {
     if (selectedTroopId === null) return;
+
+    // Check for duplicate coordinates if position is being updated
+    if (updates.Pos) {
+      const duplicate = troops.find(
+        (t) => t.Pos.x === updates.Pos!.x && 
+               t.Pos.y === updates.Pos!.y && 
+               t.EntityId !== selectedTroopId
+      );
+      if (duplicate) {
+        toast.error(`A troop already exists at (${updates.Pos.x}, ${updates.Pos.y})`);
+        return;
+      }
+    }
+
     setTroops((prevTroops) =>
       prevTroops.map((troop) =>
         troop.EntityId === selectedTroopId ? { ...troop, ...updates } : troop
